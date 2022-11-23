@@ -19,9 +19,6 @@ class Config:
         self.bucketname = appConfig['s3']['bucketname']
         self.inferencefolder = appConfig['s3']['inferencefolder'] 
         self.vpc = appConfig['vpcId']
-        self.equipment=appConfig['s3']['equipment']
-        self.material=appConfig['s3']['material']
-        self.plant=appConfig['s3']['plant']
         self.subnet=appConfig['subnet']
 
 

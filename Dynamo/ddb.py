@@ -9,9 +9,9 @@ class ddbConstruct(Construct):
 
         self._ddb = ddb.Table(self,'configdb', 
                                     table_name=props['config'].ddbtable,
-                                    partition_key=ddb.Attribute(name='equi', 
+                                    partition_key=ddb.Attribute(name='monpath', 
                                                    type=ddb.AttributeType.STRING),
-                                    sort_key=ddb.Attribute(name='equipment', 
+                                    sort_key=ddb.Attribute(name='sapmonpath', 
                                              type=ddb.AttributeType.STRING),
                                     removal_policy=RemovalPolicy.DESTROY )
     

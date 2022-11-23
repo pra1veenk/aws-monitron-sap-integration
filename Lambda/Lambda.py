@@ -62,10 +62,15 @@ class LambdaConstruct(Construct):
 
         
         #bucket =props['config'].bucketname
-        inference = props['config'].inferencefolder
+        if props['config'].inferencefolder != "":
+            inference = props['config'].inferencefolder
+        else:
+            inference='None'
+            
+        
 
         notification = s3_notifications.LambdaDestination(self._function)
         notification.bind(self, bucket)
-        bucket.add_object_created_notification(notification, s3.NotificationKeyFilter(prefix=inference))
+        bucket.add_object_created_notification(notification, s3.NotificationKeyFilter(prefix=inference,suffix='.txt'))
         
 

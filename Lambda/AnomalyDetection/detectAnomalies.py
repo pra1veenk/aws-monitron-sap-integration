@@ -17,7 +17,6 @@ from boto3.dynamodb.conditions import Attr
 #clients
 s3       = boto3.resource('s3')
 smclient = boto3.client('secretsmanager')
-lookoutvision_client = boto3.client('lookoutvision')
 ddb = boto3.resource('dynamodb')
 sapauth={}
 
@@ -50,20 +49,25 @@ def handler(event,context):
         ) 
         
         
-        filedata = json.loads(fileobj['Body'].read().decode('utf-8'))
-        print("here")
-        if filedata['prediction'] == 1:
+        filetext = fileobj['Body'].read().decode('utf-8')
+       # print(filetext)
+        filesplit = filetext.splitlines()
+#get the latest record
+        filedata=json.loads(filesplit[-1])
+        #print("here")
+        #print(filedata)
+        if filedata['assetState']['newState'] == 'NEEDS_MAINTENANCE' and filedata['assetState']['newState'] != filedata['assetState']['previousState']:
 
             Snotif = getODataClient(NOTIF_SERVICE)
             notif_data = {}
             #If you choose to pass the file data in the long text
             #Longtext = json.dumps(filedata)
             #Longtext = Longtext.replace("\\r\\n  ", " ")
-            print("popualre")
+            #print("popualre")
             
             ddbConfigTable = ddb.Table(os.environ.get('DDB_CONFIG_TABLE'))
         
-            response = ddbConfigTable.query(KeyConditionExpression=Key('equi').eq(os.environ.get('equi')))
+            response = ddbConfigTable.query(KeyConditionExpression=Key('monpath').eq(bucket))
             print(response['Items'])
            
             configItem = response['Items']
@@ -71,8 +75,8 @@ def handler(event,context):
             
             notif_data["FunctLoc"] = configItem[0]['location']
             notif_data["Equipment"] = configItem[0]['sapequi']
-            notif_data['ShortText'] = 'RUL threshold'
-            notif_data['LongText'] = " For detailed diagnostics, check S3  " +bucket+" file "+key
+            notif_data['ShortText'] = 'Monitron error'
+            notif_data['LongText'] = " Needs Maintenance, check S3  " +bucket
             
             #print(notif_data)
             
