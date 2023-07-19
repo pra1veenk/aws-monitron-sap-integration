@@ -1,11 +1,11 @@
 {
     "env": {
-        "account": "782110148236",
-        "region": "eu-west-1"
+        "account": "482236923682",
+        "region": "us-east-1"
     },
-    "vpcId": "vpc-c80dd1b1",
-    "subnet": "subnet-05ab827f9a556a73c",
-    "stackName": "monitronsap",
+    "vpcId": "vpc-09e9e2ad7f573eb08",
+    "subnet": "subnet-0a812a27df33c2d72",
+    "stackName": "monitronsatestp",
     "sapenv": {
         "SAP_EM_OAUTH_SECRET": "arn:aws:secretsmanager:eu-west-1:782110148236:secret:sapemauth-pnyaRN",
         "SAP_EM_OAUTH_URL": "https://tfe-india-dev.authentication.eu20.hana.ondemand.com/oauth/token",
@@ -14,9 +14,9 @@
     },
     "ddbtablename": "configm4s",
     "s3":{
-        "bucketname": "awspihe2ab",
-        "equipment": "CAM-01",
-        "inferencefolder":""
+    "bucketname": "awseihtest",
+    "equipment": "CAM-01",
+    "inferencefolder":""
     },
      "lambdaTimeout": 900
 }
