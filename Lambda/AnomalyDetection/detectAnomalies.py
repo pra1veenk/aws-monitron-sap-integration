@@ -11,13 +11,10 @@ import requests
 from PIL import Image
 import base64
 
-from boto3.dynamodb.conditions import Key
-from boto3.dynamodb.conditions import Attr
 
 #clients
 s3       = boto3.resource('s3')
 smclient = boto3.client('secretsmanager')
-ddb = boto3.resource('dynamodb')
 sapauth={}
 
 #constants
@@ -50,47 +47,78 @@ def handler(event,context):
         
         
         filetext = fileobj['Body'].read().decode('utf-8')
-       # print(filetext)
+        #print(filetext)
         filesplit = filetext.splitlines()
-#get the latest record
+        #get the latest record
         filedata=json.loads(filesplit[-1])
-        #print("here")
         #print(filedata)
         if filedata['assetState']['newState'] == 'NEEDS_MAINTENANCE' and filedata['assetState']['newState'] != filedata['assetState']['previousState']:
 
-            Snotif = getODataClient(NOTIF_SERVICE)
+            #Snotif = getODataClient(NOTIF_SERVICE)
             notif_data = {}
+            notif_data['SourceSystem']='AWS'
+            notif_data['DeviceLocation']='PlantA'
+            notif_data['DeviceType']='Monitron'
+            notif_data['BUCKETId']=bucket
+            notif_data['eventData']=filedata
+            #fetch oauth token for SAP Event Mesh
+            token = get_em_oauth_token()
+            #Send event to SAP Event Mesh
+            api_call_headers = {'Authorization': 'Bearer ' + token}
+            em_rest_url = os.environ.get('SAP_EM_REST_URL')
+            api_call_response = requests.post(em_rest_url, headers=api_call_headers, verify=False)
+            print("Successfuly sent event to BTP")
             #If you choose to pass the file data in the long text
             #Longtext = json.dumps(filedata)
             #Longtext = Longtext.replace("\\r\\n  ", " ")
             #print("popualre")
             
-            ddbConfigTable = ddb.Table(os.environ.get('DDB_CONFIG_TABLE'))
+            #ddbConfigTable = ddb.Table(os.environ.get('DDB_CONFIG_TABLE'))
         
-            response = ddbConfigTable.query(KeyConditionExpression=Key('monpath').eq(bucket))
-            print(response['Items'])
+            #response = ddbConfigTable.query(KeyConditionExpression=Key('monpath').eq(bucket))
+            #print(response['Items'])
            
-            configItem = response['Items']
-            print(type(configItem))
+            #configItem = response['Items']
+            #print(type(configItem))
             
-            notif_data["FunctLoc"] = configItem[0]['location']
-            notif_data["Equipment"] = configItem[0]['sapequi']
-            notif_data['ShortText'] = 'Monitron error'
-            notif_data['LongText'] = " Needs Maintenance, check S3  " +bucket
+            #notif_data["FunctLoc"] = configItem[0]['location']
+            #notif_data["Equipment"] = configItem[0]['sapequi']
+            #notif_data['ShortText'] = 'Monitron error'
+            #notif_data['LongText'] = " Needs Maintenance, check S3  " +bucket
             
             #print(notif_data)
             
-            create_request = Snotif.entity_sets.NOTIF_CREATESet.create_entity()
-            create_request.set(**notif_data)
-            try:
-                new_notif_set = create_request.execute()
-            except pyodata.exceptions.HttpError as ex:
-                 print(ex.response.text)
-            print('Notification Number'+new_notif_set.NotifNo)
+            #create_request = Snotif.entity_sets.NOTIF_CREATESet.create_entity()
+            #create_request.set(**notif_data)
+            #try:
+             #   new_notif_set = create_request.execute()
+            #except pyodata.exceptions.HttpError as ex:
+             #    print(ex.response.text)
+            #print('Notification Number'+new_notif_set.NotifNo)
     except Exception as e:
         traceback.print_exc()
         return e
-        
+
+def get_em_oauth_token():
+    auth_server_url = os.environ.get('SAP_EM_OAUTH_URL')
+    client_id = os.environ.get('SAP_EM_OAUTH_CLIENT_ID')
+    #Secret Manager
+    client_secret = smclient.get_secret_value(
+        SecretId=os.environ.get('SAP_EM_OAUTH_SECRET')
+    )
+    token_req_payload = {'grant_type': 'client_credentials'}
+
+    token_response = requests.post(auth_server_url,
+    data=token_req_payload, verify=False, allow_redirects=False,
+    auth=(client_id, client_secret))
+                
+    if token_response.status_code !=200:
+        print("Failed to obtain token from the OAuth 2.0 server")
+        raise ValueError('Failed to obtain token from the OAuth 2.0 server')
+    print("Successfuly obtained a new token")
+    tokens = json.loads(token_response.text)
+    return tokens['access_token']
+    
 def getODataClient(service,**kwargs):
     try:
         sap_host = os.environ.get('SAP_HOST_NAME')

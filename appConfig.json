@@ -1,22 +1,22 @@
 {
     "env": {
-        "account": "306804516433",
-        "region": "us-east-1"
+        "account": "782110148236",
+        "region": "eu-west-1"
     },
-    "vpcId": "vpc-02c1e538061336e94",
-    "subnet": "subnet-0363c5f133b33428a",
+    "vpcId": "vpc-c80dd1b1",
+    "subnet": "subnet-05ab827f9a556a73c",
     "stackName": "monitronsap",
     "sapenv": {
-        "SAP_AUTH_SECRET": "arn:aws:secretsmanager:us-east-1:9999999999:secret:saps4auth-rw0Ngw",
-        "SAP_HOST_NAME": "saponwas.aws.dev",
-        "SAP_PORT": "443",
-        "SAP_PROTOCOL": "https"
+        "SAP_EM_OAUTH_SECRET": "arn:aws:secretsmanager:eu-west-1:782110148236:secret:sapemauth-pnyaRN",
+        "SAP_EM_OAUTH_URL": "https://tfe-india-dev.authentication.eu20.hana.ondemand.com/oauth/token",
+        "SAP_EM_OAUTH_CLIENT_ID": "sb-default-7406c32a-ef4e-4610-accd-89bb9d0d0050-clone!b6505|xbem-service-broker-!b43",
+        "SAP_EM_REST_URL": "https://enterprise-messaging-pubsub.cfapps.eu20.hana.ondemand.com/messagingrest/v1/topics/com%2Fsap%2Fpaa%2Findustry%2Fevent%2Fraised/messages"
     },
     "ddbtablename": "configm4s",
     "s3":{
-    "bucketname": "sapmonitronkinesis",
-    "equipment": "CAM-01",
-    "inferencefolder":""
+        "bucketname": "awspihe2ab",
+        "equipment": "CAM-01",
+        "inferencefolder":""
     },
      "lambdaTimeout": 900
 }

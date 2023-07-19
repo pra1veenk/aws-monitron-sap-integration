@@ -10,7 +10,7 @@ from LambdaLayer.LambdaLayers import LambdaLayers
 from Lambda.Lambda import LambdaConstruct
 from Roles.roles import rolesConstruct
 from AppConfig.config import Config
-from Dynamo.ddb import ddbConstruct
+#from Dynamo.ddb import ddbConstruct
 
 # Requires docker
 # from aws_cdk.aws_lambda_python import(
@@ -28,13 +28,14 @@ class AwsMonitronSAPStack(Stack):
         #1.VPC
         vpc = ec2.Vpc.from_lookup(self,"VPC",vpc_id=appConfig.vpc)
          
-        privateSubnets = vpc.select_subnets(subnet_type=ec2.SubnetType.PRIVATE_WITH_NAT)
+        #privateSubnets = vpc.select_subnets(subnet_type=ec2.SubnetType.PRIVATE_WITH_EGRESS)
 
         lamdbasubnet=[]
-
-        for subnet in privateSubnets.subnets:
-            if subnet.subnet_id==appConfig.subnet:
-                lamdbasubnet.append(subnet)
+        lamdbasubnet.append(appConfig.subnet)
+        print(lamdbasubnet)
+        #for subnet in privateSubnets.subnets:
+            #if subnet.subnet_id==appConfig.subnet:
+                #lamdbasubnet.append(subnet)
  
         #2.Layers
         layers = LambdaLayers(self,'m4slambdalayers')
@@ -43,10 +44,10 @@ class AwsMonitronSAPStack(Stack):
         m4srole = rolesConstruct(self, 'm4srole')
 
         #4.DDB
-        ddbConstruct(self, 'pmconfigddb',props={
-             'config': appConfig,
-             'ddbrole': m4srole._lambdarole
-         } )
+        #ddbConstruct(self, 'pmconfigddb',props={
+         #    'config': appConfig,
+          #   'ddbrole': m4srole._lambdarole
+         #} )
 
         #5.S3 Bucket
         #pocbucket = s3.Bucket(self,'m4sbucket',
