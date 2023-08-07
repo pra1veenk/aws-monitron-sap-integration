@@ -42,32 +42,4 @@ class LambdaLayers(Construct):
                 compatible_runtimes=[_lambda.Runtime.PYTHON_3_7,_lambda.Runtime.PYTHON_3_8],
                 description='Lambda Dependencies'
             )
-        # self._pyodataLayer = _lambda.LayerVersion(
-        #     self, 'pyodata',
-        #     code=_lambda.Code.from_asset(path.join( __dirname,'./pyodata')),
-        #     compatible_runtimes=[_lambda.Runtime.PYTHON_3_7,_lambda.Runtime.PYTHON_3_8],
-        #     description='pyodata layer for Lambda'
-        # )
-
-
-        # self._boto3 = _lambda.LayerVersion(
-        #     self, 'boto3',
-        #     code=_lambda.Code.from_asset(path.join( __dirname,'./boto3')),
-        #     compatible_runtimes=[_lambda.Runtime.PYTHON_3_7,_lambda.Runtime.PYTHON_3_8],
-        #     description='aws boto3 client for Lambda'
-        # )
-
-        # self._pillow = _lambda.LayerVersion(
-        #     self, 'pillow',
-        #     code=_lambda.Code.from_asset(path.join( __dirname,'./pillow')),
-        #     compatible_runtimes=[_lambda.Runtime.PYTHON_3_7,_lambda.Runtime.PYTHON_3_8],
-        #     description='python Image library for Lambda'
-        # )
-
-        # self._requests = _lambda.LayerVersion(
-        #     self, 'requests',
-        #     code=_lambda.Code.from_asset(path.join( __dirname,'./requests')),
-        #     compatible_runtimes=[_lambda.Runtime.PYTHON_3_7,_lambda.Runtime.PYTHON_3_8],
-        #     description='python requests library for Lambda'
-        # )
 

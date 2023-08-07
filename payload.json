@@ -86,6 +86,6 @@
 	},
 	"assetState": {
 		"newState": "NEEDS_MAINTENANCE",
-		"previousState": "NEEDS_MAINTENANCE"
+		"previousState": "WORKING"
 	}
 }

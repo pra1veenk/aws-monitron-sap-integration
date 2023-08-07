@@ -34,18 +34,16 @@ class LambdaConstruct(Construct):
             # props['pillowLayer'],
             # props['requestsLayer']],
             environment={
-                "SAP_AUTH_SECRET": props['config'].sapauth,
-                "SAP_HOST_NAME": props['config'].saphost,
-                "SAP_PROTOCOL": props['config'].sapprotocol,
-                "SAP_PORT": props['config'].sapport,
+                "SAP_EM_OAUTH_SECRET": props['config'].sapemoauthsecret,
+                "SAP_EM_OAUTH_URL": props['config'].sapemoauthurl,
+                "SAP_EM_OAUTH_CLIENT_ID": props['config'].sapemoauthclientid,
+                "SAP_EM_REST_URL": props['config'].sapemresturl,
                 "PROJECT_NAME": "",
-                "DDB_CONFIG_TABLE": props['config'].ddbtable,
-                "BUCKET": props['config'].bucketname,
-                "INFERENCEFOLDER": props['config'].inferencefolder,
-                "equi": 'Equipment'
+                "BUCKET": props['config'].bucketname
+
             },
             vpc=props['vpc'],
-            vpc_subnets=ec2.SubnetSelection(subnets=props['subnet']),
+            #vpc_subnets=ec2.SubnetSelection(subnets=props['subnet']),
             memory_size=2048,
             timeout=Duration.seconds(props['config'].timeout),
             role=props['lambdarole']
@@ -61,16 +59,9 @@ class LambdaConstruct(Construct):
         
 
         
-        #bucket =props['config'].bucketname
-        if props['config'].inferencefolder != "":
-            inference = props['config'].inferencefolder
-        else:
-            inference='None'
-            
-        
-
+      
         notification = s3_notifications.LambdaDestination(self._function)
         notification.bind(self, bucket)
-        bucket.add_object_created_notification(notification, s3.NotificationKeyFilter(prefix=inference,suffix='.txt'))
+        bucket.add_object_created_notification(notification, s3.NotificationKeyFilter(suffix='.txt'))
         
 
