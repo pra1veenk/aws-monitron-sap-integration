@@ -16,7 +16,6 @@ class Config:
         self.sapemresturl = appConfig['sapenv']['SAP_EM_REST_URL']
         self.timeout = appConfig['lambdaTimeout']
         self.bucketname = appConfig['s3']['bucketname']
-        self.inferencefolder = appConfig['s3']['inferencefolder'] 
         self.vpc = appConfig['vpcId']
         self.subnet=appConfig['subnet']
 

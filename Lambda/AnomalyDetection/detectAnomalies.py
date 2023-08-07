@@ -7,20 +7,12 @@ import boto3
 import copy
 import botocore.response as br
 import requests
-from PIL import Image
-import base64
-
 
 #clients
 s3       = boto3.resource('s3')
 smclient = boto3.client('secretsmanager')
 sapauth={}
 
-#constants
-#Replace the below variables with the API endpoint if using SAP BTP
-#for eg if the API URL is https://359600betrial-trial.integrationsuitetrial-apim.us10.hana.ondemand.com:443/359600betrial/API_DEFECT_SRV
-#DEFECT_SERVICE = /359600betrial/API_DEFECT_SRV
-#ATTACHMENT_SERVICE = /359600betrial/API_CV_ATTACHMENT_SRV
 
 def handler(event,context):
     try:
@@ -50,9 +42,9 @@ def handler(event,context):
 
             #Snotif = getODataClient(NOTIF_SERVICE)
             notif_data = {}
-            notif_data['SourceSystem']='AWS'
-            notif_data['DeviceLocation']='Plant A'
-            notif_data['DeviceType']='Monitron'
+            notif_data['SourceSystem']=filedata['projectDisplayName']
+            notif_data['DeviceLocation']=filedata['siteDisplayName']
+            notif_data['DeviceType']=filedata['assetDisplayName']
             notif_data['BUCKETId']=bucket
             notif_data['eventData']=filedata
             #fetch oauth token for SAP Event Mesh

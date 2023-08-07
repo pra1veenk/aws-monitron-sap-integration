@@ -39,10 +39,8 @@ class LambdaConstruct(Construct):
                 "SAP_EM_OAUTH_CLIENT_ID": props['config'].sapemoauthclientid,
                 "SAP_EM_REST_URL": props['config'].sapemresturl,
                 "PROJECT_NAME": "",
-                #"DDB_CONFIG_TABLE": props['config'].ddbtable,
-                "BUCKET": props['config'].bucketname,
-                "INFERENCEFOLDER": props['config'].inferencefolder,
-                "equi": 'Equipment'
+                "BUCKET": props['config'].bucketname
+
             },
             vpc=props['vpc'],
             #vpc_subnets=ec2.SubnetSelection(subnets=props['subnet']),
@@ -61,16 +59,9 @@ class LambdaConstruct(Construct):
         
 
         
-        #bucket =props['config'].bucketname
-        if props['config'].inferencefolder != "":
-            inference = props['config'].inferencefolder
-        else:
-            inference='None'
-            
-        
-
+      
         notification = s3_notifications.LambdaDestination(self._function)
         notification.bind(self, bucket)
-        bucket.add_object_created_notification(notification, s3.NotificationKeyFilter(prefix=inference,suffix='.txt'))
+        bucket.add_object_created_notification(notification, s3.NotificationKeyFilter(suffix='.txt'))
         
 
