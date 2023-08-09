@@ -4,7 +4,7 @@ In this tutorial, you will configure AWS components. These are the AWS services 
 
     - Valid AWS Subscription
     - AWS 
-    - 
+    - IAM
     - 
 
 If you don't have access to a AWS (including a paid or trial subscription), create a new AWS account using [AWS Portal](https://aws.amazon.com/)
