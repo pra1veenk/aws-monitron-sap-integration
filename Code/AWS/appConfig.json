@@ -1,19 +1,22 @@
 {
     "env": {
-        "account": "306804516433",
-        "region": "us-east-2"
+        "account": "782110148236",
+        "region": "eu-west-1"
     },
-    "vpcId": "vpc-0fbe2ac768a402cdd",
-    "subnet": "subnet-07b548a98a8f58dad",
-    "stackName": "monitronsatestp",
+    "vpcId": "vpc-c80dd1b1",
+    "subnet": "subnet-05ab827f9a556a73c",
+    "stackName": "monitronsaptest",
     "sapenv": {
         "SAP_EM_OAUTH_SECRET": "arn:aws:secretsmanager:eu-west-1:782110148236:secret:sapemauth-pnyaRN",
-        "SAP_EM_OAUTH_URL": "https://tfe-india-dev.authentication.eu20.hana.ondemand.com/oauth/token",
-        "SAP_EM_OAUTH_CLIENT_ID": "sb-default-7406c32a-ef4e-4610-accd-89bb9d0d0050-clone!b6505|xbem-service-broker-!b43",
-        "SAP_EM_REST_URL": "https://enterprise-messaging-pubsub.cfapps.eu20.hana.ondemand.com/messagingrest/v1/topics/com%2Fsap%2Fpaa%2Findustry%2Fevent%2Fraised/messages"
+        "SAP_EM_OAUTH_URL": "https://tfe-dev-eu10-004.authentication.eu10.hana.ondemand.com/oauth/token",
+        "SAP_EM_OAUTH_CLIENT_ID": "sb-default-85d8f3d8-255c-4122-b170-17f93ee9db4e-clone!b156115|xbem-service-broker-!b2436",
+        "SAP_EM_REST_URL": "https://enterprise-messaging-pubsub.cfapps.eu10.hana.ondemand.com/messagingrest/v1/topics/com%2Fsap%2Fpaa%2Findustry%2Fevent%2Fraised/messages"
     },
+    "ddbtablename": "configm4s",
     "s3":{
-    "bucketname": "sapeventmonitron"
+        "bucketname": "awspihe2ab",
+        "equipment": "CAM-01",
+        "inferencefolder":"monitron"
     },
      "lambdaTimeout": 900
 }
