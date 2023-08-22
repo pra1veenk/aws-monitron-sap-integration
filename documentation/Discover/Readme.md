@@ -29,11 +29,11 @@ AWS Lambda is a serverless, event-driven compute service that lets you run code 
 - Getting Started- [HTML](https://aws.amazon.com/lambda/resources/?aws-lambda-resources-blog.sort-by=item.additionalFields.createdDate&aws-lambda-resources-blog.sort-order=desc) | [FAQ](https://aws.amazon.com/lambda/faqs/)
 - Technical Talks - [Video](https://aws.amazon.com/lambda/resources/?aws-lambda-resources-blog.sort-by=item.additionalFields.createdDate&aws-lambda-resources-blog.sort-order=desc)
 
-## Amazon DynamoDB
+## AWS Private Link
 
-Amazon DynamoDB is a fully managed, serverless, key-value NoSQL database designed for high-performance applications. Learn how to use it with these resources:
+Establish connectivity between VPCs and AWS services without exposing data to the internet. Learn how to use it with these resources:
 
-- Getting Started- [HTML](https://aws.amazon.com/dynamodb/)| [FAQ](https://aws.amazon.com/dynamodb/faqs/)
+- Getting Started- [HTML](https://aws.amazon.com/privatelink/)| [FAQ](https://aws.amazon.com/privatelink/faqs/)
 
 ## Amazon Secrets Manager
 
