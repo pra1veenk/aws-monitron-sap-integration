@@ -99,13 +99,13 @@ export AWS_DEFAULT_REGION=“”
 Bootstrap your AWS account for CDK. Please check [here](https://docs.aws.amazon.com/cdk/latest/guide/tools.html) for more details on bootstraping for CDK. Bootstraping deploys a CDK toolkit stack to your account and creates a S3 bucket for storing various artifacts. You incur any charges for what the AWS CDK stores in the bucket. Because the AWS CDK does not remove any objects from the bucket, the bucket can accumulate objects as you use the AWS CDK. You can get rid of the bucket by deleting the CDKToolkit stack from your account.
 
 ```
-$ cdk bootstrap aws://<YOUR ACCOUNT ID>/<YOUR AWS REGION>
+cdk bootstrap aws://<YOUR ACCOUNT ID>/<YOUR AWS REGION>
 ```
 
 Deploy the stack to your account. Make sure your CLI is setup for account ID and region provided in the appConfig.json file.
 
 ```
-$ cdk deploy
+cdk deploy
 ```
 
 ## Cleanup
