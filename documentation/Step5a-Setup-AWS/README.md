@@ -4,43 +4,11 @@ From an SAP standpoint, we are only looking for inference data from Monitron. Wi
 1) Use the [payload](https://github.com/pra1veenk/aws-monitron-sap-integration/blob/main/documentation/Step5a-Setup-AWS/payload.json) file as a sample to integrate into SAP.
 2) Use the [Kinesis data generator](https://awslabs.github.io/amazon-kinesis-data-generator/web/producer.html) and use the [template file](https://github.com/pra1veenk/aws-monitron-sap-integration/blob/main/documentation/Step5a-Setup-AWS/kinesisdatatemplate.json)  to simulate a kinesis stream.The sample [output file](https://github.com/pra1veenk/aws-monitron-sap-integration/blob/main/documentation/Step5a-Setup-AWS/kinesissample.txt) contains a seriesof json documents.
 
-
-## (Optional)Kinesis Data Generator ( Monitron Simulator)
-This step is optional if you intend not to use the payload file as a sample to integrate into SAP.
-Before generating data, please complete the following steps
-1) Create an S3 bucket
-2) Create a kinesis data generator
-Getting started with the Kinesis Data Generator requires only three steps:
-* Create an Amazon Cognito user in your AWS account (first-time only). (Prior to CDK deploy)
-* Login to Kinesis Data Generator. ( After CDK deploy)
-* Create a record template for your data.(After CDK deploy)
-
-**Step 1: Create an Amazon Cognito user in your AWS account**
-
-* Click [link](https://awslabs.github.io/amazon-kinesis-data-generator/web/help.html#configAccount) which will provide details on Amazon Lambda function and Amazon CloudFormation template to create the user and assign permissions to use the Kinesis Data Generator.In the link provided above, Navigate to **create a Cognito user with CloudFormation**
-  ![plot](./images/CreateCognitoUser.png)
-* Use default selections as below
-  
-   ![plot](./images/CognitoDefaultSelection.png)
-
-  Ensure the region in the top right corner is set to the same region as your Cloud9 environment. Click **Next**
-* Provide Username and Password and click **Next**
-
-   ![plot](./images/Cognitostackdetail.png)
-
-* Leave the selections as default and Click **Next** 
-Check the box indicating acknowledgement on the IAM resources: **“I acknowledge that AWS CloudFormation might create IAM resources.”**
-Click **Submit**.
-
-*Once the CloudFormation stack is in **CREATE_COMPLETE**, you can validate the resources created in the **“Resources”** tab. Navigate to the **“Outputs”** tab and copy the URL specified in **KinesisDataGeneratorUrl**. This is your URL to login to Kinesis Data Generator in **Step 2** after the CDK is deployed.
-
-  ![plot](./images/KDGURL.png)
-
 ## Deploying the CDK Project
 
 This project is set up like a standard Python project.  For an integrated development environment (IDE), use `AWS Cloud9 environment` to create python virtual environment for the project with required dependencies.  
 
-1. In the AWS Console, navigate to **AWS Cloud9**. In AWS Cloud9 click **'Create New Environment'** > Select **'Instance type'** as **'t3.medium'** or **'t3.large'** and select platform as **'Amazon Linux 2'**. 
+1. In the [AWS Console](https://us-east-1.console.aws.amazon.com/cloud9control/home?region=us-east-1#/product), navigate to **AWS Cloud9**. In AWS Cloud9 click **'Create New Environment'** > Select **'Instance type'** as **'t3.medium'** or **'t3.large'** and select platform as **'Amazon Linux 2'**. 
 Under **Network settings**, expand **VPC settings** and select the VPC created as part of pre-requisite. In **'Subnet'**, select the **'Private subnet'** (do not select the public subnet to deploy the resources). This will ensure the Lambda function is not deployed in a public subnet.  
 
 Leave other configurations as default and click **Create**.
@@ -110,8 +78,36 @@ Deploy the stack to your account. Make sure your CLI is setup for account ID and
 cdk deploy
 ```
 ## (Optional)Kinesis Data Generator ( Monitron Simulator)
+This step is optional if you intend not to use the payload file as a sample to integrate into SAP.
+Before generating data, please complete the following steps
+1) Create an S3 bucket
+2) Create a kinesis data generator
+Getting started with the Kinesis Data Generator requires only three steps:
+**Step 1: Create an Amazon Cognito user in your AWS account (first-time only). 
+**Step 2: Login to Kinesis Data Generator. 
+**Step 3: Create a record template for your data.
 
-Follow these steps only if you have setup Kinesis Data Generator and followed previous steps to create an Amazon Cognito user and have deployed the CDK as above. 
+**Step 1: Create an Amazon Cognito user in your AWS account**
+
+* Click [link](https://awslabs.github.io/amazon-kinesis-data-generator/web/help.html#configAccount) which will provide details on Amazon Lambda function and Amazon CloudFormation template to create the user and assign permissions to use the Kinesis Data Generator.In the link provided above, Navigate to **create a Cognito user with CloudFormation**
+  ![plot](./images/CreateCognitoUser.png)
+* Use default selections as below
+  
+   ![plot](./images/CognitoDefaultSelection.png)
+
+  Ensure the region in the top right corner is set to the same region as your Cloud9 environment. Click **Next**
+* Provide Username and Password and click **Next**
+
+   ![plot](./images/Cognitostackdetail.png)
+
+* Leave the selections as default and Click **Next** 
+* Check the box indicating acknowledgement on the IAM resources: **“I acknowledge that AWS CloudFormation might create IAM resources.”Click **Submit**.
+* Once the CloudFormation stack is in **CREATE_COMPLETE**, you can validate the resources created in the **“Resources”** tab. Navigate to the **“Outputs”** tab and copy the URL specified in 
+  **KinesisDataGeneratorUrl**. This is your URL to login to Kinesis Data Generator in **Step 2** after the CDK is deployed.
+
+  ![plot](./images/KDGURL.png)
+
+Follow below steps after you have deployed the CDK as above. 
 **Step 2**:**log in to Kinesis Data Generator**.
 Use the credentials created in **Step 1** along with the URL specified in outputs tab to login to Kinesis Data Generator. 
 Note: If the access URL is not used from the CloudFormation stack, the KDG login will return errors asking for user pool and other information. 
