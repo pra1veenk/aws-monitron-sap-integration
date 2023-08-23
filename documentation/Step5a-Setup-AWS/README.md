@@ -5,15 +5,21 @@ From an SAP standpoint, we are only looking for inference data from Monitron. Wi
 2) Use the [Kinesis data generator](https://awslabs.github.io/amazon-kinesis-data-generator/web/producer.html) and use the [template file](/kinesisdatatemplate.json)  to simulate a kinesis stream.The sample [output file](/kinesissample.txt) contains a seriesof json documents.
 
 
-## Kinesis Data Generator ( Monitron Simulator)
+## (Optional)Kinesis Data Generator ( Monitron Simulator)
 This step is optional if you intend not to use the payload file as a sample to integrate into SAP.
 Before generating data, please complete the following steps
 1) Create an S3 bucket
-2) Create a kinesis data stream and delivery stream as outlined [here](https://docs.aws.amazon.com/Monitron/latest/admin-guide/kinesis-store-S3.html)
+2) Create a kinesis data generator
+Getting started with the Kinesis Data Generator requires only three steps:
+* Create an Amazon Cognito user in your AWS account (first-time only).
+* Use this user’s credentials to log in to the KDG.
+* Create a record template for your data.
 
-[Kinesis data generator](https://awslabs.github.io/amazon-kinesis-data-generator/web/producer.html) can help simulate an output from Monitron. The template uses faker.js for variables. A [template file](./kinesisdatatemplate.json)
-to generate the output is available in the github repo. Please make further modifications as necessary.
-![Data Generator](/kinesisdatagen.png)
+**Step 1: Create an Amazon Cognito user in your AWS account**
+
+Click [link](https://awslabs.github.io/amazon-kinesis-data-generator/web/help.html#configAccount) which will provide details on Amazon Lambda function and Amazon CloudFormation template to create the user and assign permissions to use the Kinesis Data Generator.In the link provided above, Navigate to **create a Cognito user with CloudFormation**
+  ![plot](./images/image.png)
+
 
 ## SAP BTP integration pattern
 If the SAP ECC or S/4 HANA system is an API provider to BTP, please use the below architecture. The architecture uses an APIKey for authentication. The preflow policy contains snippets from here to pass the provider credentials and xcsrf token to the consumer.
