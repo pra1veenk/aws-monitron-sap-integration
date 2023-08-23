@@ -112,7 +112,8 @@ Getting started with the Kinesis Data Generator requires only three steps:
   ![plot](./images/KDGURL.png)
 
 Follow below steps after you have deployed the CDK as above. 
-**Step 2**:**log in to Kinesis Data Generator**.
+
+**Step 2: log in to Kinesis Data Generator**.
 Use the credentials created in **Step 1** along with the URL specified in outputs tab to login to Kinesis Data Generator. 
 Note: If the access URL is not used from the CloudFormation stack, the KDG login will return errors asking for user pool and other information. 
 Once you provide the credentials, as specified, you will reach the landing page:
