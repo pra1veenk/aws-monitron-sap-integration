@@ -133,6 +133,7 @@ Generate data using the following steps:
   ![plot](./images/KDGStopsend.png)
 
  ** **Data Validation** 
+ 
  Validate the data streaming to Amazon S3 using the steps below:
     ** Goto **AWS Console** Select **Amazon S3**Select **Amazon S3 bucket** and Click **Objects** to view the streaming data files
 
