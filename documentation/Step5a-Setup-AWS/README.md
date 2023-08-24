@@ -46,7 +46,7 @@ The `appConfig.json` file takes the input paramters for the stack. Maintain the 
 * `region`  Enter Region information where the stack resources needs to be created
 * `vpcId`   Enter the VPC for Lambda execution from where Lambda can access SAP resources and look out for vision
 * `subnet`  Enter the subnet for Lambda exection
-  Note: Please provide a private subnet for the lambda execution.
+*  Note: Please provide a private subnet for the lambda execution.
 ## Resource Identifiers
 * `stackname` Enter an Identifier/Name for the CDK stack
 * `ddbtablename` Enter a name for Dynamo DB Table that would be created as part of the stack which would hold the metadata for creating Service notification in SAP
