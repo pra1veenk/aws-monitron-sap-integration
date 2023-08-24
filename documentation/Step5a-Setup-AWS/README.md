@@ -9,8 +9,6 @@ From an SAP standpoint, we are only looking for inference data from Monitron. Wi
 This project is set up like a standard Python project.  For an integrated development environment (IDE), use `AWS Cloud9 environment` to create python virtual environment for the project with required dependencies.  
 
 1. In the [AWS Console](https://us-east-1.console.aws.amazon.com/cloud9control/home?region=us-east-1#/product), navigate to **AWS Cloud9**. In AWS Cloud9 click **'Create New Environment'** > Select **'Instance type'** as **'t3.medium'** or **'t3.large'** and select platform as **'Amazon Linux 2'**. 
-Under **Network settings**, expand **VPC settings** and select the VPC created as part of pre-requisite. In **'Subnet'**, select the **'Private subnet'** (do not select the public subnet to deploy the resources). This will ensure the Lambda function is not deployed in a public subnet.  
-
 Leave other configurations as default and click **Create**.
 
 
@@ -48,6 +46,7 @@ The `appConfig.json` file takes the input paramters for the stack. Maintain the 
 * `region`  Enter Region information where the stack resources needs to be created
 * `vpcId`   Enter the VPC for Lambda execution from where Lambda can access SAP resources and look out for vision
 * `subnet`  Enter the subnet for Lambda exection
+  Note: Please provide a private subnet for the lambda execution.
 ## Resource Identifiers
 * `stackname` Enter an Identifier/Name for the CDK stack
 * `ddbtablename` Enter a name for Dynamo DB Table that would be created as part of the stack which would hold the metadata for creating Service notification in SAP
