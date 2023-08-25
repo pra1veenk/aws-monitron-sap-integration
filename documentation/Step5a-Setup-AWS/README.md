@@ -8,8 +8,8 @@ From an SAP standpoint, we are only looking for inference data from Monitron. Wi
 
 This project is set up like a standard Python project.  For an integrated development environment (IDE), use `AWS Cloud9 environment` to create python virtual environment for the project with required dependencies.  
 
-1. In the [AWS Console](https://us-east-1.console.aws.amazon.com/cloud9control/home?region=us-east-1#/product), navigate to **AWS Cloud9**. In AWS Cloud9 click **'Create New Environment'** > Select **'Instance type'** as **'t3.medium'** or **'t3.large'** and select platform as **'Amazon Linux 2'**. 
-Leave other configurations as default and click **Create**.
+1. In the [AWS Console](https://us-east-1.console.aws.amazon.com/cloud9control/home?region=us-east-1#/product), navigate to **AWS Cloud9**. In AWS Cloud9 click **'Create New Environment'** > Select **'Instance type'** as **'t3.medium'** or **'t3.large'** and select platform as **'Amazon Linux 2'**. Under network settings, select the VPC and subnet created, for details on VPC creation follow this tutorial.
+Click **Create**.
 
 
 2.  Clone the github repository and navigate to the directory.
