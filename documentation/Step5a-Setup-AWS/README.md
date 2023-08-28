@@ -5,7 +5,7 @@ From an SAP standpoint, we are only looking for inference data from Monitron. Wi
 2) Use the [Kinesis data generator](https://awslabs.github.io/amazon-kinesis-data-generator/web/producer.html) and use the [template file](https://github.com/pra1veenk/aws-monitron-sap-integration/blob/main/documentation/Step5a-Setup-AWS/kinesisdatatemplate.json)  to simulate a kinesis stream.The sample [output file](https://github.com/pra1veenk/aws-monitron-sap-integration/blob/main/documentation/Step5a-Setup-AWS/kinesissample.txt) contains a seriesof json documents. Follow detailed steps provided in this [document](OptionalReadme.md).
 
 ## Architecture
-  ![plot](./images/sub-eventmesh.png)
+  ![plot](./images/Monitron-AEM-Architecture.png)
 
 ## Deploying the CDK Project
 
