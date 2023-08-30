@@ -1,5 +1,4 @@
 const proxy = require('@sap/cds-odata-v2-adapter-proxy')
-
 const cds = require('@sap/cds')
 const https = require('https');
 const httpsAgent = new https.Agent({ rejectUnauthorized: false });
@@ -11,17 +10,17 @@ cds.on('bootstrap', app => {
     app.use(cors());
     app.post('/api/events', async (req, res) => {
     try{
-
         const eventMessage = req.body;
         await actionUtil.convertEventToBusinessAction(eventMessage, httpsAgent);
         return "Event Processed. Please check logs for status.";
 
-    } 
-    catch(error){
+    } catch(error){
         throw error;
-    }
 
-});
+    }
+    });
     app.use(proxy());
+
 })
+
 module.exports = cds.server

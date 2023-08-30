@@ -1,20 +1,16 @@
 const cds = require("@sap/cds");
-const https = require('https');
+//const https = require('https');
 const destinationUtil = require('./utils/destination');
 // const businessRulesUtil = require('./utils/businessrules');
-const actionUtil = require('./utils/action');
-const logUtil = require('./utils/logger');
-const action = require("./utils/action");
+//const actionUtil = require('./utils/action');
+//const logUtil = require('./utils/logger');
+//const action = require("./utils/action");
 
 module.exports = cds.service.impl(async function (srv) {
 
     const { Destinations, Actions, Types, LogStatuses } = this.entities;
-    const emMessaging = await cds.connect.to("messaging");
-    const httpsAgent = new https.Agent({ rejectUnauthorized: false });
-
-    emMessaging.on('com/sap/paa/industry/event/raised', async (eventMessage) => {
-        await actionUtil.convertEventToBusinessAction(eventMessage, httpsAgent);
-    })
+    //const emMessaging = await cds.connect.to("messaging");
+    //const httpsAgent = new https.Agent({ rejectUnauthorized: false });
 
 
     srv.on('READ', Destinations, async (req) => {
