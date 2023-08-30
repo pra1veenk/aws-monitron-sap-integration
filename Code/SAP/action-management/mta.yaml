@@ -1,7 +1,7 @@
 _schema-version: "3.1"
 ID: action-management
 description: Action Management Application
-version: 1.0.0
+version: 1.0.1
 modules:
 - name: action-management-srv
   type: nodejs

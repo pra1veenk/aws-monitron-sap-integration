@@ -74,9 +74,6 @@
       },
       "db": {
         "kind": "hana-cloud"
-      },
-      "messaging": {
-          "kind": "enterprise-messaging-shared"
       }
     },
     "features": {
