@@ -92,7 +92,7 @@ module.exports = cds.service.impl(async function (srv) {
     })
 
     srv.on('postEvent', async (req) => {
-        console.log('event re4ceived from advanced event mesh');
+        console.log('event received from advanced event mesh');
         console.log(req);
         console.log(req.data);
     })
