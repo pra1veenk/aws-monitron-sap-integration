@@ -23,7 +23,7 @@ Service | Service Plan | Usage Scenario |
 [Cloud Foundry Runtime](https://discovery-center.cloud.sap/serviceCatalog/cloud-foundry-runtime?region=all) | MEMORY | Create polyglot applications.The chosen quota defines the available amount of memory in GB.|
 [SAP Connectivity Service](https://discovery-center.cloud.sap/serviceCatalog/connectivity-service?service_plan=lite&region=all&commercialModel=cloud) | lite | Establish connections between cloud applications and on-premise systems.|
 [Destination Service](https://discovery-center.cloud.sap/serviceCatalog/destination?service_plan=lite&region=all&commercialModel=cloud) | lite | Destination service lets you find the destination information required to access a remote service or system from your extension application.|
-[Advanced Event Mesh](https://discovery-center.cloud.sap/serviceCatalog/advanced-event-mesh?service_plan=default&region=all&commercialModel=cloud) | default | fully managed cloud service that allows applications to communicate through asynchronous events.|
+[SAP Integration Suite,Advanced Event Mesh](https://discovery-center.cloud.sap/serviceCatalog/advanced-event-mesh?service_plan=default&region=all&commercialModel=cloud) | default | A complete event streaming, event management, and monitoring platform that incorporates best practices, expertise, and technology for event-driven architecture (EDA) on a single platform.|
 [SAP Private Link Service](https://discovery-center.cloud.sap/serviceCatalog/private-link-service?service_plan=standard&region=all&commercialModel=cloud) | standard | Available only in Enterprise account. Establishes a private connection between selected SAP BTP services and selected services in your own IaaS provider accounts.|
 [SAP Business Application Studio](https://discovery-center.cloud.sap/serviceCatalog/business-application-studio?region=all) | trial <br> standard-edition(Application) | Available in Trial as well as Enterprise account.
 [SAP HANA Cloud](https://discovery-center.cloud.sap/serviceCatalog/sap-hana-cloud?tab=customerreference&region=all)  | hana | Application database for CAP Application
@@ -32,7 +32,7 @@ Service | Service Plan | Usage Scenario |
 **Note:** Service instances for Business Rules, SAP HANA Schemas & HDI Containers, Connectivity service, Destination service and SAP Authorization and Trust Management Service will be created programmatically during deployment. 
 
 
-### 2a. Set Up SAP Advanced Event Mesh
+### 2. Set Up SAP Advanced Event Mesh
 
 To set up SAP Advanced Event Mesh for this scenario, follow these steps:
 
@@ -42,27 +42,33 @@ To set up SAP Advanced Event Mesh for this scenario, follow these steps:
 
 2. Under **Application Plans** find the **default** application plan, choose the options menu on the right side of the row, and then choose **Create**
 
-    
+    ![plot](./images/aem-btp-create.png)
 
 3. In the **New Instance or Subscription** dialog box, leave the prepopulated **Service** and **Plan** settings and choose **Next**.
-
+    ![plot](./images/aem-btp-plan.png)
         
 
 4. Add the email address for the user who is the subaccount administrator and then choose **Next**.
 
-    
+    ![plot](./images/aem-btp-adminemail.png)
 
 
 5. Review the details and choose **Create**.
-
+    ![plot](./images/aem-btp-finalscreen.png)
     
 
 6. To access the advanced event mesh, navigate to **Services** > and choose **Instances and Subscriptions**.
 Choose the row for the advanced event mesh subscription and choose **Go to Application**
 
     ![plot](./images/access-aem.png)
- 
 
+7. Choose **Cluster Manager** in the Advanced Event Mesh Application. 
+    ![plot](./images/aem-application.png)
+
+8. Click on **Create Service**. 
+    ![plot](./images/aem-create-service.png)
+
+    Fill the Service Name 
 ### 3. Set Up SAP HANA Cloud Instance
 
 Refer [Deploy SAP HANA Cloud](https://developers.sap.com/tutorials/hana-cloud-deploying.html) to create an instance of SAP HANA Cloud in SAP BTP. 
