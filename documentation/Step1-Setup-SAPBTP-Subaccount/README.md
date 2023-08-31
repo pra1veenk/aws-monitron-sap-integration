@@ -49,6 +49,7 @@ To set up SAP Advanced Event Mesh for this scenario, follow these steps:
         
 
 4. Add the email address for the user who is the subaccount administrator and then choose **Next**.
+**Note** The user must be a valid user in the Identity Authentication tenant that has a trust configuration established with the subaccount. Refer to Managing Security Administrators in Your Subaccount.(https://help.sap.com/docs/btp/sap-business-technology-platform/managing-security-administrators-in-your-subaccount-fsa)
 
     ![plot](./images/aem-btp-adminemail.png)
 
@@ -65,10 +66,47 @@ Choose the row for the advanced event mesh subscription and choose **Go to Appli
 7. Choose **Cluster Manager** in the Advanced Event Mesh Application. 
     ![plot](./images/aem-application.png)
 
-8. Click on **Create Service**. 
+8. Click on **Create Service**.
+    
+    Fill the **Service Name** as **Monitron** and select **Service Type** as **Standard**. Select **Amazon Web Services** from the drop down menu for **Cloud**, Choose **Frankfurt** as **Region** from the Map, leave the prepopulated version for **Broker Version** , for this tutorial.
+
+    Click on **Create Service**
+
     ![plot](./images/aem-create-service.png)
 
-    Fill the Service Name 
+9. Click on the created service **Monitron**
+    ![plot](./images/aem-service-screen1.png)
+
+    Click on the **connect** tab and expand the **REST** tile to get the messaging connectivity information.
+
+    ![plot](./images/aem-connect.png)
+
+10. Configuring a **REST Delivery Point**
+     Next, you must configure a queue and a REST delivery point on Message VPN.
+
+     **a.** Click on **Open Broker Manager**.
+
+     ![plot](./images/aem-openbrokermanager.png)
+
+     **b.** The **Broker Manager** application loads. The next step is to create a queue, on the left pane click on **Queues**  
+     ![plot](./images/aem-click-on-queue.png)
+
+     **c.** Create a Queue by name **Q/rdp1/input**
+     ![plot](./images/aem-create-queue.png)
+
+     Enable both incoming and outgoing configuration
+     ![plot](./images/aem-queue2.png)    
+
+     Queue successfully created
+     ![plot](./images/aem-queue-created.png)    
+
+     **d.** Add a Topic Subscription to the queue
+     Click on the queue created and then click on the **Subscriptions** Tab
+     Then click on **+ Subscription** to add a topic.
+     ![plot](./images/aem-addtopicsubscription.png)
+
+
+    
 ### 3. Set Up SAP HANA Cloud Instance
 
 Refer [Deploy SAP HANA Cloud](https://developers.sap.com/tutorials/hana-cloud-deploying.html) to create an instance of SAP HANA Cloud in SAP BTP. 
