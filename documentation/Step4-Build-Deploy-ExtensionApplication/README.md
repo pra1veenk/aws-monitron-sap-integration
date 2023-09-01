@@ -53,162 +53,150 @@ Build and deploy the application. Run the following commands:
 
     ![plot](./images/postdeploy.png)
 
-9. Verify SAP Event Mesh Subscription and Instance creation.
+9. **Advanced Event Mesh Configuration**
 
-    - In SAP BTP Enterprise account, you should be able to see the below details in Subcriptions and Instances.
+    To access the advanced event mesh, navigate to **Services** > and choose **Instances and Subscriptions**.
+    Choose the row for the advanced event mesh subscription and choose **Go to Application**
 
-        ![plot](./images/eventmesh-enterprise.png)
+    ![plot](./images/access-aem.png)
 
-10. Open the SAP Event Mesh application.
+10. Choose **Cluster Manager** in the Advanced Event Mesh Application. 
+    ![plot](./images/aem-application.png)
 
-    - If you are using SAP BTP Enterprise account, go to the Subscriptions tab and choose Event Mesh to open the application.
+11. Click on **Create Service**.
+    
+    Fill the **Service Name** as **Monitron** and select **Service Type** as **Standard**. Select **Amazon Web Services** from the drop down menu for **Cloud**, Choose **Frankfurt** as **Region** from the Map, leave the prepopulated version for **Broker Version** , for this tutorial.
 
-    - If you are using SAP BTP Trial account, go to Instances tab, select the instance for SAP Event Mesh and choose View Dashboard.
+    Click on **Create Service**
 
-11. Choose **Message Clients** and then choose **Queues**. You will see the below message client and queue created in your SAP Event Mesh service instance.
+    ![plot](./images/aem-create-service.png)
 
-    ![plot](./images/msgclient.png)
+12. Click on the created service **Monitron**
+    ![plot](./images/aem-service-screen1.png)
 
-    ![plot](./images/queue.png)
+    Click on the **connect** tab and expand the **REST** tile to get the messaging connectivity information.
 
+    ![plot](./images/aem-connect.png)
 
-12. In subaccount, choose **Security** > **Role Collections** and then choose **Create New Role Collection** icon.
+13. Configuring a **REST Delivery Point**
+     Next, you must configure a queue and a REST delivery point on Message VPN.
 
-    ![plot](./images/RoleCollectionListCreate.png)
+     **a.** Click on **Open Broker Manager**.
 
-13. Enter a value of your choice for the **Name** and **Description** field and choose **Create**.
+     ![plot](./images/aem-openbrokermanager.png)
 
-    ![plot](./images/CreateNewRoleCollection.png)
+     **b.** The **Broker Manager** application loads. The next step is to create a queue, on the left pane click on **Queues**  
+     ![plot](./images/aem-click-on-queue.png)
 
-14. Choose **Edit** to add roles and user to the created role collection.
+     **c.** Create a Queue by name **Q/rdp1/input**
+     ![plot](./images/aem-create-queue.png)
 
-    ![plot](./images/EditRoleCollection.png)
+     Enable both incoming and outgoing configuration
+     ![plot](./images/aem-queue2.png)    
 
+     Queue successfully created
+     ![plot](./images/aem-queue-created.png)    
 
-15. Select **RoleName** value help and then select the **RuleRepositorySuperUser** and **RuleRuntimeSuperUser** roles from the list.
+     **d.** Add a **Topic Subscription** to the queue.
 
-    ![plot](./images/RoleNameValueHelp.png)
+     Click on the queue created and then click on the **Subscriptions** Tab.
 
-16. Choose **Add**.
+     Then click on **+ Subscription** to add a topic.
+     ![plot](./images/aem-addtopicsubscription.png)
 
-    ![plot](./images/SelectRoles.png)
+     In the **Create Subscription** screen, type in the topic name as **monitron/messages** and click **Create**
+     ![plot](./images/aem-topic-name.png)    
 
-17. In the **Users** tab, enter your email id in **ID** and **E-Mail** input field and choose **Save**.
+     Topic Subscription successfully created. 
+     ![plot](./images/aem-topic-created.png)
 
-18. Your configuration should look like below:
+     **e.** Create a **REST Delivery Point** object
 
-    ![plot](./images/AddUserToRoleCollection.png)
+     On the left pane click on **Clients** and then Navigate to **REST** tab.
+     ![plot](./images/aem-rest-client.png)
 
-### 4. Configure API destination in AWS EventBridge to send events to SAP Event Mesh
+     Click on ** + REST Delivery Point** and Fill the **RDP Name** as **rdp1**
+     ![plot](./images/aem-rdp-name.png)
 
-1. In the SAP BTP cockpit, navigate to your subaccount and choose **Instances and Subscriptions** and then choose **Instances**.
+     Configure the REST Delivery Point
+     ![plot](./images/aem-rdp-config.png)  
 
-    ![plot](./images/btp-instances.png)
+     REST Delivery Point successfully created
+     ![plot](./images/aem-rdp-created.png)  
 
-2. Choose **action-management-eventmesh** and then choose the three dots next to **action-management-eventmesh-key** and then choose **View** to open the service key. 
+     **f.**  Create a Queue Binding object
 
-    ![plot](./images/em-servicekey.png)
+     Create a queue binding to the queue you created previously. This will tell the RDP where to fetch messages from. **Note:** that REST Delivery Points (RDPs) can be bound to multiple queues.
 
-3. Copy the values of **clientid**, **clientsecret** and **tokenendpoint** corresponding to **httprest** protocol.
+     Click on the **rdp1** created in the previous step. Click on **Queue Bindings** Tab.
 
-    ![plot](./images/oauthdetails.png)
+     ![plot](./images/aem-queue-binding.png)
 
-    Scroll down and copy the value of **uri**.
+     Create a queue binding - **Q/rdp1/input**
 
-    ![plot](./images/callback.png)
+     ![plot](./images/aem-queue-binding-name.png)
 
-4. Open the SAP Event Mesh application.
+     Set the POST target where the requests would be sent - **/api/events**
 
-    - If you are using SAP BTP Enterprise account, go to the Subscriptions tab and choose Event Mesh to open the application.
+     ![plot](./images/aem-binding-config.png)
 
-    ![plot](./images/event-mesh-subscription.png)
+     **Note:** that the RDP is down - it will automatically start up when a REST consumer makes a connection to the RDP.
 
-5. Choose **Message Clients** and choose message client which is created post deployment.
+     ![plot](./images/aem-binding-completed.png)
 
-    ![plot](./images/em-message-clients.png)
+     **g.** Create a **REST Consumer** object.
 
-6. Choose **Queues** and Select **Queue Subscriptions** in the Action button corresponding the queue name that is created by the "action-management" CAP application.
+     Navigate to **REST Consumers** Tab and click on **+ REST Conusmer**
 
-    ![plot](./images/em-queue-subscription.png)
+     ![plot](./images/aem-rest-consumer.png)
 
-7. Copy the value of **Subscribed Topic Name**
+     Fill in the **REST Consumer Name** as **rc1** 
 
-    ![plot](./images/em-topic-name.png)
+     ![plot](./images/aem-consumer-name.png)
 
-8. Encode the **Subscribed Topic Name** value and notedown as **encoded subscribed topic name**.
+     Enable the **REST Consumer** and set HOST:PORT details of the message HTTP listener. 
 
-    Note: For example, if the Subscribed Topic Name is "orgname/industry/event/raised", then the encoded subscribed topic name will be "orgname%2Findustry%2Fevent%2Fraised".
+     To Fill the **Host** , Navigate to the Cloud Foundary Space where the application is deployed and Click on **action-management-srv**.
 
-9. Go to Amazon AWS Portal. In the AWS portal, search for **event bridge** and choose **Amazon EventBridge**.
+     ![plot](./images/aem-consumer-host.png)
 
-    ![plot](./images/eventbridge-search.png)
+     Copy the link under **Application Routes**,. **Note:** Strip the **https://** before pasting the value in the **Host** field
 
-10. In **Amazon EventBridge**, under **Integration** section, choose **API destinations**.
+     ![plot](./images/aem-consumer-host-link.png)
 
-    ![plot](./images/eventbridge-destination1.png)
+     Fill in the Value of **Port** as **443**
 
-11. Choose **Create API destination**
+     Select **POST** as the **HTTP Method**.
 
-    ![plot](./images/eventbridge-destination2.png)
+     Enable the TLS.
 
-12. In **API destination detail** section, enter the following details
+     Keep **Outgoing Connection Count** value as **1**.
 
-    | Field | Value |
-    | --------|---------|
-    | **Name** | sap-eventmesh-destination |
-    | **Description** | Send events to SAP Event Mesh |
-    | **API destination endpoint** | This URL is formed by concatenating the **uri** from Step 3, constant rest endpoint path (/messagingrest/v1/topics/) and **encoded subscribed topic name** from Step 8  and (/messages). Note: URL format -  **uri**/messagingrest/v1/topics/**encoded subscribed topic name**/messages. For example,if uri is "https://enterprise-messaging-pubsub.cfapps.eu10.hana.ondemand.com" and encoded subscribed topic name is "orgname%2Findustry%2Fevent%2Fraised", then the callback URL is "https://enterprise-messaging-pubsub.cfapps.eu10.hana.ondemand.com/messagingrest/v1/topics/orgname%2Findustry%2Fevent%2Fraised/messages" |
-    | **HTTP Method** | POST |
+     Fill the **Max Response Wait Time (sec)** as **30**
 
-    ![plot](./images/eventbridge-destination3.png)
+     Populate **Connection Retry Delay (sec)** field with **300**
 
-13. In the Connection section, choose **Create a new connection** and then enter the **Connection name** as "sap-event-mesh-connection". In the **Destination type** select "Other" and in the **Authorization type** select "OAuth Client Credentials"
+     From the drop down menu, choose **OAuth 2.0 Client Credentials** as the **Authentication Scheme**.
 
-    ![plot](./images/eventbridge-destination4.png)
+     Next, Go to your **BTP subaccount** ,Navigate to **Services** > **Instances and Subscriptions** and under the **Instances** select **action-management-auth**.
 
-14. Enter/select the following values
+     ![plot](./images/aem-consumer-oauth.png)
 
-    | Field | Value |
-    | --------|---------|
-    | **Authorization endpoint** | **tokenendpoint** from step 3 |
-    | **HTTP method** | POST |
-    | **HTTP method** | POST |
-    | **Client ID** | **clientid** from step 3 |
-    | **Client secret** | **client secret** from step 3 |
+     Under the **Service Keys** the key named **action-management-auth-key** is already created. Click on the **View** Option to get the **OAuth 2.0 Client Credentials**.  
 
-    ![plot](./images/eventbridge-destination5.png)
+     ![plot](./images/aem-consumer-oauth-key.png)
 
-15. Under **OAuth Http Parameters**, choose **Add parameter**. In the **Parameter** dropdown, select "Query string", in the **Key** field, enter "grant_type" and in the **Value** field, enter "client_credentials". Under **Invocation Http Parameters**, choose **Add parameter**. In the **Parameter** dropdown, select "Header", in the **Key** field, enter "x-qos" and in the **Value** field, enter "1" and then choose **Create**.
+     Copy the **clientid**, **clientsecret** and **url**. Navigate back to the **REST Consumer** configuration and paste the values for **Client ID** and **Client Secret**. Paste the **url** copied earlier in the **Token Endpoint URL** and appened **/oauth/token** at the end of the **url**. 
+     Effective **Token Endpoint URL** is **url/oauth/token**.
 
-    ![plot](./images/eventbridge-destination6.png)
+     Fill the remaining fields as shown in the screenshot below.
 
-16. API destination is created successfully. Click on Refresh button. If the Status is shown as **Active**, then the connection to SAP event Mesh is configured correctly else you need to recheck the credentials.
+     ![plot](./images/aem-consumer-config.png)  
 
-### 5. Configure pipe AWS EventBridge to send events to SAP Event Mesh from Amazon SQS queue
+     REST Consumer successfully created
 
-1. In **Amazon EventBridge**, under **Pipes** section, choose **Pipes**.
+     ![plot](./images/aem-consumer-created.png)  
 
-    ![plot](./images/eventbridge-pipes1.png)
+     A final, configured **RDP settings** would look like this.
 
-2. Choose **Create pipe**
-
-    ![plot](./images/eventbridge-pipes2.png)
-
-3. In the **Pipe name** field, enter the value as "sqs-sap-eventmesh-pipe"
-
-    ![plot](./images/eventbridge-pipes3.png)
-
-4. In the **Source** dropdown, select "SQS" and in the **SQS Queue** dropdown, select queue that we created earlier(iot-core-queue). Scroll down and choose **Next**
-
-    ![plot](./images/eventbridge-pipes4.png)
-
-5. Skip the **Filtering** and **Enrichment** sections by choosing **Next**
-
-6. In the **Target** section, in the **Target service** dropdown, select **API Destination** and in **API destination** dropdown, select 
-the destination that is created in the above step(sap-eventmesh-destination) and then choose **Create pipe**.
-
-    ![plot](./images/eventbridge-pipes5.png)
-
-7. "Pipe sqs-sap-eventmesh-pipe was created Successfully" message is displayed and check that the status is **Running**.
-
-    ![plot](./images/eventbridge-pipes6.png)
+     ![plot](./images/aem-rdp-final.png)
