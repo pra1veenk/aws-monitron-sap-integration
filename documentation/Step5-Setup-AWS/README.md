@@ -74,7 +74,7 @@ In the Application, Navigate to the Cluster Service **Monitron** created in **St
 
 ![plot](./images/aem-connect.png)
 
-Copy the **Username**, **Password** and **Public Internet** which will be used in the foloowing steps.  
+Copy the **Username** and **Password**.  
 
 ![plot](./images/aem-connect.png)
 
@@ -88,16 +88,7 @@ Choose **Other type of secret** option under **Secret type**. Add two key-value 
 
 Fill the **Secret name** as **sapaem-credentials** and Click on **Next**
 
-![plot](./images/aem-creds.png)
-
-Once the secret is created, click on the **sapaem-credentials**, and Copy the **Secret ARN**, this is the value of the **`SAP_AEM_CREDENTIALS`** Environment Variable
-
-![plot](./images/secret-arn.png)
-
-The value of **`SAP_AEM_REST_URL`** is the **Public Internet URL/monitron/messages** (url/topic)  copied in the previous steps.
-
-**Note:** These values need to be manitained in the **appConfig.json** file.
-
+![plot](./images/secret-keys.png)
 
 Add your AWS credentials configuration as below to allow AWS Cloud9 environment to access your AWS account.
 * export AWS_ACCESS_KEY_ID=""
