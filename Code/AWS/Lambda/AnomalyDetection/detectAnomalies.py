@@ -7,6 +7,7 @@ import boto3
 import copy
 import botocore.response as br
 import requests
+import base64 as b64
 
 #clients
 s3       = boto3.resource('s3')
@@ -41,50 +42,43 @@ def handler(event,context):
         if filedata['assetState']['newState'] == 'NEEDS_MAINTENANCE' and filedata['assetState']['newState'] != filedata['assetState']['previousState']:
 
             #Snotif = getODataClient(NOTIF_SERVICE)
-            notif_data = {}
-            notif_data['SourceSystem']=filedata['projectDisplayName']
-            notif_data['DeviceLocation']=filedata['siteDisplayName']
-            notif_data['DeviceType']=filedata['assetDisplayName']
-            notif_data['BUCKETId']=bucket
-            notif_data['eventData']=filedata
+            notif_data = {'data':{}}
+            notif_data['data']['SourceSystem']=filedata['projectDisplayName']
+            notif_data['data']['DeviceLocation']=filedata['siteDisplayName']
+            notif_data['data']['DeviceType']=filedata['assetDisplayName']
+            notif_data['data']['BUCKETId']=bucket
+            notif_data['data']['eventData']=filedata
             #fetch oauth token for SAP Event Mesh
-            token = get_em_oauth_token()
-            #Send event to SAP Event Mesh
+           
+            #Send event to SAP Advanced Event Mesh
             api_call_headers = {
-                                'x-qos': '1',
-                                'Authorization': 'Bearer ' + token,
+                                'Authorization': get_aem_credentials(),
                                 'Content-Type': 'application/json'
             }
-            em_rest_url = os.environ.get('SAP_EM_REST_URL')
-            api_call_response = requests.post(em_rest_url, data=json.dumps(notif_data), headers=api_call_headers, verify=False)
+
+            aem_rest_url = os.environ.get('SAP_AEM_REST_URL')
+            api_call_response = requests.post(aem_rest_url, data=json.dumps(notif_data), headers=api_call_headers, verify=False)
+            print("api_call_headers",api_call_headers)
             print("Successfuly sent event to BTP")
     except Exception as e:
         traceback.print_exc()
         return e
 
-def get_em_oauth_token():
-    auth_server_url = os.environ.get('SAP_EM_OAUTH_URL')
-    client_id = os.environ.get('SAP_EM_OAUTH_CLIENT_ID')
+
+def get_aem_credentials():
     #Secret Manager
-    secret = smclient.get_secret_value(
-        SecretId=os.environ.get('SAP_EM_OAUTH_SECRET')
+    aem_credentials_secret = smclient.get_secret_value(
+        SecretId=os.environ.get('SAP_AEM_CREDENTIALS')    
     )
-    client_secret = secret['SecretString']
-    token_req_payload = {'grant_type': 'client_credentials'}
-    token_response = requests.post(auth_server_url,
-    data=token_req_payload, verify=False, allow_redirects=False,
-    auth=(client_id, client_secret))
-    #print(token_response)            
-    if token_response.status_code !=200:
-        print("Failed to obtain token from the OAuth 2.0 server")
-        raise ValueError('Failed to obtain token from the OAuth 2.0 server')
-    print("Successfuly obtained a new token")
-    tokens = json.loads(token_response.text)
-    return tokens['access_token']
+    
+    aem_secret_string = json.loads(aem_credentials_secret['SecretString'])
+    aem_username = aem_secret_string['username']
+    aem_password = aem_secret_string['password']
+
+    token = b64.b64encode(f"{aem_username}:{aem_password}".encode('utf-8')).decode("ascii")
 
 
-
-   
+    return f'Basic {token}'
 
 
 

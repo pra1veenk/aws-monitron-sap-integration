@@ -24,7 +24,7 @@ In this section, you will configure SAP Business Rule project which will be used
 
 ### 2. Create Business Rules Project
 
-1. Download the [**EventsToActionsRulesProject.zip**](./EventsToActionsRulesProject.zip) file which contains the SAP Business Rules project.
+1. Download the [**EventsToActionsRulesProject.zip**](./EventsToActionsRulesProject.zip) file and [**MonitronActionConfigurations.zip](./MonitronActionConfigurations.zip) file which contains the SAP Business Rules project.
 
 2. Choose **Design** to create new or import new rule projects.
 

@@ -60,7 +60,7 @@ The `appConfig.json` file takes the input paramters for the stack. Maintain the 
 ## SAP Environnment details
 The following are the two SAP Environment variables: 
 * `SAP_AEM_CREDENTIALS` (example: arn:aws:secretsmanager://region/account/secret:sapemauth-pnyaRN)
-* `SAP_AEM_REST_URL` 
+* `SAP_AEM_REST_URL` (example: https://mr-connection-giuyy7qx0z1.messaging.solace.cloud:9443/topic)
 
 The values for these variables needs to be stored in the **AWS Secrets Manager**. Go to your **AWS account** and search for **secret**, choose **Secrets Manager**
 

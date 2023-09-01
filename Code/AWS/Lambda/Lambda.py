@@ -34,13 +34,10 @@ class LambdaConstruct(Construct):
             # props['pillowLayer'],
             # props['requestsLayer']],
             environment={
-                "SAP_EM_OAUTH_SECRET": props['config'].sapemoauthsecret,
-                "SAP_EM_OAUTH_URL": props['config'].sapemoauthurl,
-                "SAP_EM_OAUTH_CLIENT_ID": props['config'].sapemoauthclientid,
-                "SAP_EM_REST_URL": props['config'].sapemresturl,
+                "SAP_AEM_CREDENTIALS": props['config'].sapaemcredential,
+                "SAP_AEM_REST_URL": props['config'].sapaemresturl,
                 "PROJECT_NAME": "",
                 "BUCKET": props['config'].bucketname
-
             },
             vpc=props['vpc'],
             #vpc_subnets=ec2.SubnetSelection(subnets=props['subnet']),
