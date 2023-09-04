@@ -157,13 +157,13 @@ In this section, you will configure the different business actions that needs to
 
 ```
 
-    Your configuration should look like this:
+Your configuration should look like this:
 
-    ![plot](./images/FetchEquipmentDetails.png)
+![plot](./images/FetchEquipmentDetails.png)
 
 8. Create another business action with name **Create PM Notification** and enter the following  configuration values.
 
-    ```
+```
     Basic Information:
 
     Action Name: Create PM Notification
@@ -177,17 +177,21 @@ In this section, you will configure the different business actions that needs to
     Method: POST
     Relative Path: /API_PURCHASEREQ_PROCESS_SRV/A_PurchaseRequisitionHeader
     Payload: {
-"NotificationText":"Monitron error ",
-"MaintNotifLongTextForEdit":"Needs Maintenance, Monitron location: ${{pre.717174c8-8f1c-4166-ab8f-cd946286ab04.Result[0].EquipmentDetails.Location}} and equipment: ${{pre.717174c8-8f1c-4166-ab8f-cd946286ab04.Result[0].EquipmentDetails.Equipment}}",
-"NotificationType": "M1","TechnicalObject": "${{pre.717174c8-8f1c-4166-ab8f-cd946286ab04.Result[0].EquipmentDetails.Equipment}}","TechObjIsEquipOrFuncnlLoc": "EAMS_EQUI","TechnicalObjectLabel": "${{pre.717174c8-8f1c-4166-ab8f-cd946286ab04.Result[0].EquipmentDetails.Equipment}}"
-}
+        
+    "NotificationText":"Monitron error ",
+    "MaintNotifLongTextForEdit":"Needs Maintenance, Monitron location: ${{pre.717174c8-8f1c-4166-ab8f-cd946286ab04.Result[0].EquipmentDetails.Location}} and equipment: ${{pre.717174c8-8f1c-4166-ab8f-cd946286ab04.Result[0].EquipmentDetails.Equipment}}",
+    "NotificationType": "M1","TechnicalObject": "${{pre.717174c8-8f1c-4166-ab8f-cd946286ab04.Result[0].EquipmentDetails.Equipment}}",
+    "TechObjIsEquipOrFuncnlLoc": "EAMS_EQUI",
+    "TechnicalObjectLabel": "${{pre.717174c8-8f1c-4166-ab8f-cd946286ab04.Result[0].EquipmentDetails.Equipment}}"
+
+    }
     Is Csrf Token Needed?: true
 
     Related Actions: 
     Flow Type: Pre Action
     Action: FetchEquipmentDetails
-    ```
+```
 
-    Your configuration should look like this:
+Your configuration should look like this:
 
-    ![plot](./images/CreatePMNotificationAction.png)
+![plot](./images/CreatePMNotificationAction.png)
