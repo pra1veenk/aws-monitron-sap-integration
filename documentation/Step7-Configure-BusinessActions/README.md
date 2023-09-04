@@ -6,7 +6,7 @@ In this section, you will define business action in the action-management extens
 
 1. In the SAP BTP cockpit, navigate to your subaccount and choose **Instances and Subscriptions** and then choose **Instances**.
 
-    ![plot](./images/btp-instances.png)
+    ![plot](./images/postdeploy.png)
 
 2. Choose **action-management-rules** and then choose the three dots next to **action-management-rules-key** and then choose **View** to open the service key.
 
@@ -126,10 +126,7 @@ In this section, you will configure the different business actions that needs to
     Content-Type: application/json
     Method: POST
     Relative Path: /workingset-rule-services
-    Payload: { "RuleServiceId": "<RulesServiceID>",
-                "Vocabulary": [ {   "EventInfo":{ "SourceSystem": "${{event.data.enrichments.System}}",
-                                    "DeviceTemple": "${{event.data.enrichments.DeviceTemplate}}",
-                                    "DeviceLocation": "${{event.data.enrichments.Location}}" }  } ] }
+    Payload: { "RuleServiceId": "<RulesServiceID>","Vocabulary": [ { "EventInfo":{ "SourceSystem": "${{event.data.SourceSystem}}","DeviceLocation": "${{event.data.DeviceLocation}}","DeviceType": "${{event.data.DeviceType}}" } } ] }
     Action Id Path in Response: Result[0].ActionInfo.ActionId
     ```
 
@@ -139,13 +136,38 @@ In this section, you will configure the different business actions that needs to
 
 6. Choose **Create**.
 
-7. Create another business action with name **Create Purchase Requisition** and enter the following  configuration values.
+7. Create another business action with name **FetchEquipmentDetails** and enter the following configuration values.
+
+```
+    Basic Information:
+
+    Action Name: FetchEquipmentDetails
+    Description: FetchEquipmentDetails
+    Category: Pre/Post Action
+    Action Type: Service Integration
+    
+    HTTP Information:
+    Destination: ACTION_BUSINESS_RULES
+    Content-Type: application/json
+    Method: POST
+    Relative Path: /workingset-rule-services
+    Payload: { "RuleServiceId": "2c63b92dc775482682d230d031b14b1a", "Vocabulary": [ { "BucketInfo":{ "BucketName": "${{event.data.BUCKETId}}" } } ] }
+
+    Is Csrf Token Needed?: false
+
+    ```
+
+    Your configuration should look like this:
+
+    ![plot](./images/FetchEquipmentDetails.png)
+
+8. Create another business action with name **Create PM Notification** and enter the following  configuration values.
 
     ```
     Basic Information:
 
-    Action Name: Create Purchase Requisition
-    Description: Create Purchase Requisition
+    Action Name: Create PM Notification
+    Description: Create notification in SAP PM for Monitron
     Category: Main Action
     Action Type: Service Integration
     
@@ -155,37 +177,17 @@ In this section, you will configure the different business actions that needs to
     Method: POST
     Relative Path: /API_PURCHASEREQ_PROCESS_SRV/A_PurchaseRequisitionHeader
     Payload: {
-                "PurchaseRequisition": "",
-                "PurchaseRequisitionType": "NB",
-                "PurReqnDescription": "Purchase Req from Event ",
-                "SourceDetermination": false,
-                "PurReqnDoOnlyValidation": false,
-                "to_PurchaseReqnItem": {
-                    "results": [
-                    {
-                        "PurchaseRequisition": "",
-                        "PurchaseRequisitionItem": "10",
-                        "PurchaseRequisitionType": "NB",
-                        "PurchaseRequisitionItemText": "Fill Level ${{event.data.telemetry.FillingLevel}}",
-                        "Material": "TG10",
-                        "MaterialGroup": "L001",
-                        "RequestedQuantity": "1",
-                        "PurchasingOrganization": "1710",
-                        "PurchasingGroup": "001",
-                        "Plant": "1710",
-                        "OrderedQuantity": "1",
-                        "DeliveryDate": "2022-11-15T00:00:00"
-                    }
-                    ]
-                }
-             }
+"NotificationText":"Monitron error ",
+"MaintNotifLongTextForEdit":"Needs Maintenance, Monitron location: ${{pre.717174c8-8f1c-4166-ab8f-cd946286ab04.Result[0].EquipmentDetails.Location}} and equipment: ${{pre.717174c8-8f1c-4166-ab8f-cd946286ab04.Result[0].EquipmentDetails.Equipment}}",
+"NotificationType": "M1","TechnicalObject": "${{pre.717174c8-8f1c-4166-ab8f-cd946286ab04.Result[0].EquipmentDetails.Equipment}}","TechObjIsEquipOrFuncnlLoc": "EAMS_EQUI","TechnicalObjectLabel": "${{pre.717174c8-8f1c-4166-ab8f-cd946286ab04.Result[0].EquipmentDetails.Equipment}}"
+}
     Is Csrf Token Needed?: true
 
     Related Actions: 
-    Flow Type: Post Action
-    Action: Update Device Cloud Property
+    Flow Type: Pre Action
+    Action: FetchEquipmentDetails
     ```
 
     Your configuration should look like this:
 
-    ![plot](./images/CreatePurchaseRequisitionAction.png)
+    ![plot](./images/CreatePMNotificationAction.png)
