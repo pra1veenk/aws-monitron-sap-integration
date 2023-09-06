@@ -44,7 +44,7 @@ Now that you have successfully deployed the extension application in SAP BTP and
 
 11. To verify the creation of **PM Notification**, Log into **SAP S/4HANA GUI** System.
 
-    ![plot](./images/S4GUIp.png)
+    ![plot](./images/S4GUI.png)
 
 
 12. The code to **Display PM notification** is **/oIW23**. Enter this code and hit **Enter**.
@@ -55,7 +55,7 @@ Now that you have successfully deployed the extension application in SAP BTP and
 
     ![plot](./images/EnterID.png)
 
-14. You should be able to see the **Display PM Notification: Maintenance Request** Screen, with the details of the defect as follows:
+14. You should be able to see the **Display PM Notification: Maintenance Request** Screen, with the details of the event as follows:
 
     ![plot](./images/PMNotificationDetails.png)
 
