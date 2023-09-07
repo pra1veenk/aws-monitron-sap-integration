@@ -14,7 +14,7 @@ Now that you have successfully deployed the extension application in SAP BTP and
 
     ![plot](./images/S3MonitronFolder.png)
 
-4. Download the **payload.txt**(./payload.txt). This file has the sample event, which we use for testing the scenario. In the **monitron** folder, Choose **Upload**
+4. Download the **payload.txt** (./payload.txt). This file has the sample event, which we use for testing the scenario. In the **monitron** folder, Choose **Upload**
 
     ![plot](./images/S3Upload.png)
 
