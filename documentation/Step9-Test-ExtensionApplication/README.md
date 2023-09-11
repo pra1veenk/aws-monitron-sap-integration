@@ -1,6 +1,12 @@
 ## Test the Extension Application and Execute the End-to-End Scenario
 
-Now that you have successfully deployed the extension application in SAP BTP and completed the configurations in Amazon AWS, SAP BTP and SAP S/4HANA, follow these steps to test the application.
+Now that you have successfully deployed the extension application in SAP BTP and completed the configurations in Amazon AWS, SAP BTP and SAP S/4HANA. 
+From an SAP standpoint, we are only looking for inference data from Monitron. Without the actual hardware set up, This can be done in 2 ways
+1) Use the [payload](/payload.txt) file as a sample to integrate into SAP.
+2) Use the [Kinesis data generator](https://awslabs.github.io/amazon-kinesis-data-generator/web/producer.html) and use the [template file](/kinesisdatatemplate.json)  to simulate a kinesis stream.The sample [output file](/kinesissample.txt) contains a seriesof json documents.
+3) AN S3 bucket is a prerequisite for both these scenarios.
+
+We have followed the first approach, that is, using the [payload](/documentation/Step9-Test-ExtensionApplication/payload.txt) to test the scenario. Follow these steps to test the application.
 
 1. Go to to your AWS account and Navigate to **S3** Service.
 

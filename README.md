@@ -80,7 +80,7 @@ These are the technical prerequistics for an integration between AWS IoT Core, S
 **Amazon Web Services**
 - A valid AWS subscription
 
-- AWS Monitron
+- Amazon Monitron
     > - Required for receiving and sending the events whenever an abnormality is detected in the equipment.
 
 - Amazon S3
