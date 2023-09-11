@@ -12,7 +12,7 @@ This framework can be used in combination with any hyperscalar/telco IoT.
 
 [Scenario](#scenario)\
 [Solution Architecture](#solution-architecture)\
-[Implementation: Configuration and Development](#configuration-and-development)\
+[Requirements](#requirements)\
 [Additional Resources](#additional-resources)\
 [Known Issues](#known-issues)\
 [Reference](#reference)\
@@ -54,3 +54,40 @@ The following steps depicts the information flow across systems:
 (7), (8), (9) (10) and (11) Event-to-Business-Action framework (extension app) processor module triggers the defined action in the SAP S/4HANA system by using the SAP Destination Service and SAP Private Link Service.
 
 For more information, see Set Up Connectivity Between SAP BTP and SAP S/4HANA Using SAP Private Link Service page.
+
+## Requirements
+
+These are the technical prerequistics for an integration between AWS IoT Core, SAP BTP and SAP S/4HANA. 
+
+**Services in SAP BTP**
+- Cloud Foundry Runtime
+    > - Foundation for running the CAP extension application for translating events to business actions.
+- Memory/Runtime quota
+    > - Required for deploying and running the extension application in SAP BTP
+- Authorization & Trust Management Service
+    > - Required for securing the extension application in SAP BTP
+- SAP Integration Suite,Advanced Event Mesh 
+    >- Required to receive events from Amazon Monitron
+- SAP HANA Cloud 
+    >- Required to store action configuration and logs for CAP application
+- SAP Process Automation - Business Rules capability
+    >- Business Rules service to configure business decisions that needs to be taken based on the type of event received from Amazon Monitron.
+- SAP S/4HANA System
+    >- To execute the business action associated with the event received. 
+
+
+**Amazon Web Services**
+- A valid AWS subscription
+
+- AWS Monitron
+    > - Required for receiving and sending the events whenever an abnormality is detected in the equipment.
+
+- Amazon S3
+    > - Required to store the received streaming event data.
+
+- Amazon Secrets Manager
+    >- Required to store the Advanced Event Mesh credentials that are accessed by the Amazon Lambda Function.
+
+- Amazon Lambda Function
+    >- Required to orchestrate the process of detecting a stream contains any alerts related to failure or warnings, and then the inference result is passed to SAP Advanced Event Mesh.
+
