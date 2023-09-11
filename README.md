@@ -98,27 +98,27 @@ This scenario talks about the steps needed for translating events from AWS IoT t
 
 These are the steps to configure SAP S/4HANA, SAP BTP and Amazon AWS.
 
-[Step 1: Set Up the Subaccount in SAP BTP](./Step1-Setup-SAPBTP-Subaccount/README.md)
+[Step 1: Set Up the Subaccount in SAP BTP](./documentation/Step1-Setup-SAPBTP-Subaccount/README.md)
 
-[Step 2: Check SAP S/4HANA Readiness](./Step2-SAPS4HANA-Readiness/README.md)
+[Step 2: Check SAP S/4HANA Readiness](./documentation/Step2-SAPS4HANA-Readiness/README.md)
 
 Step 3: Connect SAP BTP and SAP S/4HANA
 
-   - [(Option 1) Using SAP BTP Connectivity Service](./Step3a-SetupCloudConnector/README.md)
+   - [(Option 1) Using SAP BTP Connectivity Service](./documentation/Step3a-SetupCloudConnector/README.md)
 
-   - [(Option 2) Using SAP Private Link Service](./Step3b-Setup-SAPPrivateLinkService/README.md)
+   - [(Option 2) Using SAP Private Link Service](./documentation/Step3b-Setup-SAPPrivateLinkService/README.md)
 
-[Step 4: Build and Deploy the Extension Application](./Step4-Build-Deploy-ExtensionApplication/README.md)
+[Step 4: Build and Deploy the Extension Application](./documentation/Step4-Build-Deploy-ExtensionApplication/README.md)
 
-[Step 5: Setup AWS Account](./Step5-Setup-AWS/README.md)
+[Step 5: Setup AWS Account](./documentation/Step5-Setup-AWS/README.md)
 
-[Step 6: Create SAP Business Rules Project](./Step6-Configure-BusinessRules-Part1/README.md)
+[Step 6: Create SAP Business Rules Project](./documentation/Step6-Configure-BusinessRules-Part1/README.md)
 
-[Step 7: Configure SAP S/4HANA Business Actions in the extension application](./Step7-Configure-BusinessActions/README.md)
+[Step 7: Configure SAP S/4HANA Business Actions in the extension application](./documentation/Step7-Configure-BusinessActions/README.md)
 
-[Step 8: Update and Activate SAP Business Rule Project](./Step8-Configure-BusinessRules-Part2/README.md)
+[Step 8: Update and Activate SAP Business Rule Project](./documentation/Step8-Configure-BusinessRules-Part2/README.md)
 
-[Step 9: Test the Extension Application](./Step9-Test-ExtensionApplication/README.md)
+[Step 9: Test the Extension Application](./documentation/Step9-Test-ExtensionApplication/README.md)
 
 ## Additional Resources
 
