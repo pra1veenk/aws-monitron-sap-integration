@@ -62,7 +62,15 @@ The `appConfig.json` file takes the input paramters for the stack. Maintain the 
 * `stackname` Enter an Identifier/Name for the CDK stack
 * `ddbtablename` Enter a name for Dynamo DB Table that would be created as part of the stack which would hold the metadata for creating Service notification in SAP
 ## Bucket Structure
-* `bucketname` Enter the name of the bucketwhere the inferences are sent.
+* `bucketname` Enter the name of the bucket where the inferences are sent.
+   To Create a S3 Bucket, Follow steps as below:
+   1. Goto [AWS Console](https://us-east-1.console.aws.amazon.com/cloud9control/home?region=us-east-1#/product)and type in "S3" in the search tab->Click on 'S3'
+       ![plot](./images/S3_1.png)
+   2. Click the 'Create' Bucket button.You will be taken to the "Create bucket" page to begin setting up your bucket.
+         ![plot](./images/S3_2.png)
+   3. Enter a name in the "Bucket name" field. The bucket name you choose must be unique across all existing bucket names in Amazon S3
+   4. In the AWS region select the region for your S3 bucket. Please note that your bucket must be created in the same region as your VPC subnet
+   5. Leave remaining options as default, scroll down and click 'Create' bucket. 
 * `inferencefolder` Enter the name of the folder(prefix)where the inferences are sent. Leave blank if no folder
 
 ## SAP Environnment details
