@@ -1,8 +1,7 @@
 ## (Optional)Kinesis Data Generator ( Monitron Simulator)
 This step is optional if you intend not to use the payload file as a sample to integrate into SAP.
 Before generating data, please complete the following steps
-1) Create an S3 bucket
-2) Create a kinesis data generator
+1) **Create a kinesis data generator**
 Getting started with the Kinesis Data Generator requires only three steps:
 **Step 1: Create an Amazon Cognito user in your AWS account (first-time only). 
 **Step 2: Login to Kinesis Data Generator. 
