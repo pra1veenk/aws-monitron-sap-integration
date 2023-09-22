@@ -7,7 +7,7 @@ In this section, you will activate the APIs related to purchase requisition for 
 
 2. Activate the API_MAINTNOTIFICATION service.
 
-   ![plot](./API_MAINTNOTIFICATION.png)
+   ![plot](./images/API_MAINTNOTIFICATION.png)
 
 
 
