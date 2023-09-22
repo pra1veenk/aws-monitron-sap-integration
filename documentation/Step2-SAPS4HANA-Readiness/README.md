@@ -7,6 +7,8 @@ In this section, you will activate the APIs related to purchase requisition for 
 
 2. Activate the API_MAINTNOTIFICATION service.
 
+   ![plot](./API_MAINTNOTIFICATION.png)
+
 
 
 Based on your business scenario, expose the respective APIs (For example, create plant maintenance notification etc.).
