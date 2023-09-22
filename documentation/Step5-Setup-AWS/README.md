@@ -1,11 +1,9 @@
 ## Integrating Amazon Monitron and SAP Plant maintenance
-Amazon Monitron is an end-to-end system including hardware ( sensors and gateway) and software, that uses machine learning to detect abnormal conditions in industrial equipment and enable predictive maintenance. However, the output of machine learning in industrial operations only provides valuable results if action is taken on the machine learning insights. To reduce the burden of change management and ensure action is taken on the Monitron inferences, this sample project has demonstrated how to automatically record the Amazon Monitron inferences in SAP Plant maintenance/asset management.
+
+To reduce the burden of change management and ensure action is taken on the Monitron inferences, this sample project has demonstrated how to automatically record the Amazon Monitron inferences in SAP Plant maintenance/asset management.
 From an SAP standpoint, we are only looking for inference data from Monitron. Without the actual hardware set up, This can be done in 2 ways (S3 bucket is a pre-requisite)
 1) Use the [payload](https://github.com/pra1veenk/aws-monitron-sap-integration/blob/main/documentation/Step5a-Setup-AWS/payload.json) file as a sample to integrate into SAP.
 2) Use the [Kinesis data generator](https://awslabs.github.io/amazon-kinesis-data-generator/web/producer.html) and use the [template file](https://github.com/pra1veenk/aws-monitron-sap-integration/blob/main/documentation/Step5a-Setup-AWS/kinesisdatatemplate.json)  to simulate a kinesis stream.The sample [output file](https://github.com/pra1veenk/aws-monitron-sap-integration/blob/main/documentation/Step5a-Setup-AWS/kinesissample.txt) contains a seriesof json documents. Follow detailed steps provided in this [document](OptionalReadme.md).
-
-## Architecture
-  ![plot](./images/Monitron-AEM-Architecture.png)
 
 ## Deploying the CDK Project
 
@@ -47,31 +45,49 @@ The `appConfig.json` file takes the input paramters for the stack. Maintain the 
 ## AWS environment details
 * `account` Enter AWS account id of your AWS cloud environment
   Goto [AWS Console](https://us-east-1.console.aws.amazon.com/cloud9control/home?region=us-east-1#/product) and on the top right click on dropdown button as shown, Copy the Account ID as highlighted.
+  
    ![plot](./images/accountid.png)
+  
 * `region`  Enter Region information where the stack resources needs to be created
   Goto [AWS Console](https://us-east-1.console.aws.amazon.com/cloud9control/home?region=us-east-1#/product) and on the top right click on dropdown as highlighted which shows the region, copy the region associated to your AWS Account(Example - us-east-1)
+  
      ![plot](./images/region.png)
+  
 * `vpcId`   Enter the VPC for Lambda execution
   Goto [AWS Console](https://us-east-1.console.aws.amazon.com/cloud9control/home?region=us-east-1#/product) and type in "VPC" in the search tab->Click on VPC, you will see the list of all VPC's created in your AWS environment, select the VPC created as part of pre-requisite steps, Copy the vpcID as highlighted.
+  
    ![plot](./images/vpcid.png)
+  
 * `subnet`  Enter the subnet ID for Lambda exection
   Goto [AWS Console](https://us-east-1.console.aws.amazon.com/cloud9control/home?region=us-east-1#/product)and type in "Subnet" in the search tab->Click on Subnet, you will see the list of Subnet's created in your AWS environment, select the Private Subnet created as part of pre-requisite steps, Copy the SubnetID as highlighted below
 *  Note: Please provide a private subnet for the lambda execution.
+  
    ![plot](./images/subnetid.png)
+
+   
 ## Resource Identifiers
 * `stackname` Enter an Identifier/Name for the CDK stack
 * `ddbtablename` Enter a name for Dynamo DB Table that would be created as part of the stack which would hold the metadata for creating Service notification in SAP
+  
 ## Bucket Structure
 * `bucketname` Enter the name of the bucket where the inferences are sent.
    To Create a S3 Bucket, Follow steps as below:
    1. Goto [AWS Console](https://us-east-1.console.aws.amazon.com/cloud9control/home?region=us-east-1#/product)and type in "S3" in the search tab->Click on 'S3'
+
       ![plot](./images/S3_1.png)
+      
    2. Click the 'Create' Bucket button.You will be taken to the "Create bucket" page to begin setting up your bucket.
+
       ![plot](./images/S3_2.png)
+      
    3. Enter a name in the "Bucket name" field. The bucket name you choose must be unique across all existing bucket names in Amazon S3
+
       ![plot](./images/S3_3.png)
+      
    4. In the AWS region select the region for your S3 bucket. Please note that your bucket must be created in the same region as your VPC subnet
-   5. Leave remaining options as default, scroll down and click 'Create' bucket. 
+      
+   5. Leave remaining options as default, scroll down and click 'Create' bucket.
+      
 * `inferencefolder` Enter the name of the folder(prefix)where the inferences are sent. Leave blank if no folder
 
 ## SAP Environnment details
