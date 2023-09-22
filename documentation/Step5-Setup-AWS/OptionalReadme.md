@@ -10,7 +10,9 @@ Getting started with the Kinesis Data Generator requires only three steps:
 **Step 1: Create an Amazon Cognito user in your AWS account**
 
 * Click [link](https://awslabs.github.io/amazon-kinesis-data-generator/web/help.html#configAccount) which will provide details on Amazon Lambda function and Amazon CloudFormation template to create the user and assign permissions to use the Kinesis Data Generator.In the link provided above, Navigate to **create a Cognito user with CloudFormation**
+  
   ![plot](./images/CreateCognitoUser.png)
+  
 * Use default selections as below
   
    ![plot](./images/CognitoDefaultSelection.png)
@@ -33,6 +35,7 @@ Follow below steps after you have deployed the CDK as above.
 Use the credentials created in **Step 1** along with the URL specified in outputs tab to login to Kinesis Data Generator. 
 Note: If the access URL is not used from the CloudFormation stack, the KDG login will return errors asking for user pool and other information. 
 Once you provide the credentials, as specified, you will reach the landing page:
+
  ![plot](./images/KDGLandingPage.png)
 
 **Step 3**:**Create a record template for your data**.
