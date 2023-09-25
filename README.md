@@ -1,4 +1,4 @@
-# Integration AWS Monitron with SAP BTP
+# Integrate Events from Amazon Monitron with SAP S/4HANA using SAP BTP
 
 [![REUSE status](https://api.reuse.software/badge/github.com/SAP-samples/btp-events-to-business-actions-framework)](https://api.reuse.software/info/github.com/SAP-samples/btp-events-to-business-actions-framework)
 
@@ -6,21 +6,21 @@ This repository contains code samples and instructions for developing an extensi
 
 This framework can be used in combination with any hyperscalar/telco IoT.
 
- In this tutorial, the **events** are received from **AWS Monitron** and the **actions** for these events are taken in **SAP S/4HANA**. You can use this application to further customize it for other systems as well.
+ In this tutorial, the **events** are received from **Amazon Monitron** and the **actions** for these events are taken in **SAP S/4HANA**. You can use this application to further customize it for other systems as well.
 
  ## Table of Contents
 
-[Scenario](#scenario)\
-[Solution Architecture](#solution-architecture)\
-[Requirements](#requirements)\
-[Implementation: Configuration and Development](#configuration-and-development)\
-[Additional Resources](#additional-resources)\
-[Known Issues](#known-issues)\
-[Reference](#reference)\
-[Disclaimer](#disclaimer)\
-[How to Obtain Support](#how-to-obtain-support)\
-[Code of Conduct](#codeofconduct)\
-[Contributing](#contributing)\
+[Scenario](#scenario)
+[Solution Architecture](#solution-architecture)
+[Requirements](#requirements)
+[Implementation: Configuration and Development](#configuration-and-development)
+[Additional Resources](#additional-resources)
+[Known Issues](#known-issues)
+[Reference](#reference)
+[Disclaimer](#disclaimer)
+[How to Obtain Support](#how-to-obtain-support)
+[Code of Conduct](#codeofconduct)
+[Contributing](#contributing)
 [License](#license)
 
 
