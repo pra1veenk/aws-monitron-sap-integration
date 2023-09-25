@@ -50,7 +50,7 @@ We have followed the first approach, that is, using the [payload](/documentation
 
 11. To verify the creation of **PM Notification**, Log into **SAP S/4HANA GUI** System.
 
-    ![plot](./images/S4GUI.png)
+    ![plot](./images/s4GUI.png)
 
 
 12. The code to **Display PM notification** is **/oIW23**. Enter this code and hit **Enter**.

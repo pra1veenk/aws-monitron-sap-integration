@@ -1,5 +1,5 @@
 ## Check SAP S/4HANA Readiness
-In this section, you will activate the APIs related to purchase requisition for this scenario.
+In this section, you will activate the APIs related to plant maintenance notification for this scenario.
 
 ### Activate the API_MAINTNOTIFICATION Service
 

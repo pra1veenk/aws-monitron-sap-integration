@@ -3,20 +3,20 @@
 >Note: Choose this configuration if you have SAP BTP subaccount and SAP S/4HANA running on AWS. If you have already established the connectivity between SAP BTP and SAP S/4HANA using Cloud Connector then you can skip this step.
 
 ### Prerequisites
-These are the prerequisities that you need to consider if you have SAP BTP and SAP S/4HANA on Amazon AWS. 
+These are the prerequisities that you need to consider if you have SAP BTP and SAP S/4HANA on Amazon Web Services. 
 
-- SAP S/4HANA system running on Amazon AWS
+- SAP S/4HANA system running on Amazon Web Services
 
 - SAP Private Link service
-    - Required to connect SAP BTP and Amazon AWS.
+    - Required to connect SAP BTP and Amazon Web Services.
 
 >Note: The SAP BTP Private Link service is currently available only for enterprise accounts in SAP BTP.
 
-- Amazon AWS Private Link service
-    - Required to connect Amazon AWS and SAP S/4HANA.
+- AWS Private Link service
+    - Required to connect Amazon Web Services and SAP S/4HANA.
 
 
-### 1. Set Up the SAP Private Link Service and Amazon AWS Private Link Service 
+### 1. Set Up the SAP Private Link Service and Amazon Web Services Private Link Service 
 
 To configure these services for the SAP S/4HANA system, follow the 
  [Enhance core ERP business processes with resilient applications on SAP BTP - SAP Private Link Service](https://github.com/SAP-samples/btp-build-resilient-apps/tree/extension-privatelink/tutorials/05-PrivateLink) tutorial and complete the steps until the **Prepare Extension Application** section.

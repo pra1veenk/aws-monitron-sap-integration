@@ -8,21 +8,6 @@ This framework can be used in combination with any hyperscalar/telco IoT.
 
 In this tutorial, the **events** are received from **Amazon Monitron** and the **actions** for these events are taken in **SAP S/4HANA**. You can use this application to further customize it for other systems as well.
 
- ## Table of Contents
-
-[Scenario](#scenario)\
-[Solution Architecture](#solution-architecture)\
-[Requirements](#requirements)\
-[Implementation: Configuration and Development](#configuration-and-development)\
-[Additional Resources](#additional-resources)\
-[Known Issues](#known-issues)\
-[Reference](#reference)\
-[Disclaimer](#disclaimer)\
-[How to Obtain Support](#how-to-obtain-support)\
-[Code of Conduct](#codeofconduct)\
-[Contributing](#contributing)\
-[License](#license)
-
 
 ## Scenario
 
@@ -101,74 +86,9 @@ These are the technical prerequistics for an integration between AWS IoT Core, S
 - Amazon Lambda Function
     >- Required to orchestrate the process of detecting a stream contains any alerts related to failure or warnings, and then the inference result is passed to SAP Advanced Event Mesh.
 
-## Configuration and Development
-
-This scenario talks about the steps needed for translating events from AWS IoT to business actions in SAP business systems.
-
-These are the steps to configure SAP S/4HANA, SAP BTP and Amazon AWS.
-
-[Step 1: Set Up the Subaccount in SAP BTP](./documentation/Step1-Setup-SAPBTP-Subaccount/README.md)
-
-[Step 2: Check SAP S/4HANA Readiness](./documentation/Step2-SAPS4HANA-Readiness/README.md)
-
-Step 3: Connect SAP BTP and SAP S/4HANA
-
-   - [(Option 1) Using SAP BTP Connectivity Service](./documentation/Step3a-SetupCloudConnector/README.md)
-
-   - [(Option 2) Using SAP Private Link Service](./documentation/Step3b-Setup-SAPPrivateLinkService/README.md)
-
-[Step 4: Build and Deploy the Extension Application](./documentation/Step4-Build-Deploy-ExtensionApplication/README.md)
-
-[Step 5: Setup AWS Account](./documentation/Step5-Setup-AWS/README.md)
-
-[Step 6: Create SAP Business Rules Project](./documentation/Step6-Configure-BusinessRules-Part1/README.md)
-
-[Step 7: Configure SAP S/4HANA Business Actions in the extension application](./documentation/Step7-Configure-BusinessActions/README.md)
-
-[Step 8: Update and Activate SAP Business Rule Project](./documentation/Step8-Configure-BusinessRules-Part2/README.md)
-
-[Step 9: Test the Extension Application](./documentation/Step9-Test-ExtensionApplication/README.md)
 
 ## Additional Resources
-
-This project has been implemented based on the following SAP CAP sample repository.
-
-- [Cloud-cap-samples](https://github.com/SAP-samples/cloud-cap-samples/)
 
 Related projects :
 
 - [Events-to-Business-Actions-Framework](https://github.com/SAP-samples/btp-events-to-business-actions-framework/tree/main)
-
-## Known Issues
-
-No known issues.
-
-## Reference
-
-[AWS Monitron](https://docs.aws.amazon.com/Monitron/latest/user-guide/what-is-monitron.html)
-
-## Disclaimer
-
-This project has been a proof of concept, including several limitations and prerequisites. The objective was to build a extension application for receiving and automating the actions in SAP S/4HANA. For this reason, the coding should not be seen as any recommendation for productive implementation. It fulfils the purpose and requirements of a proof of concept and is not intended for productive usage. It has been declared as pure proof of concept only to give the development teams ideas for solving potential challenges when integrating events from other platforms like AWS Monitron and SAP S/4HANA using SAP BTP. This can be extended to integrate with any other SAP LoB system as well.
-
-## How to Obtain Support
-
-[Create an issue](https://github.com/SAP-samples/<repository-name>/issues) in this repository if you find a bug or have questions about the content.
-For additional support, [ask a question in the SAP Community](https://answers.sap.com/questions/ask.html).
-
-## Contributing
-
-If you wish to contribute code, offer fixes or improvements,  send a pull request. Due to legal reasons, contributors will be asked to accept a DCO when they create the first pull request to this project. This happens in an automated fashion during the submission process. SAP uses [the standard DCO text of the Linux Foundation](https://developercertificate.org/).
-
-Refer to the [CONTRIBUTING](CONTRIBUTING.md) file for guidelines to contributions from external parties.
-
-For additional support, [ask a question in the SAP Community](https://answers.sap.com/questions/ask.html).
-
-## Code of Conduct
-
-Refer to the [CODE OF CONDUCT](CODE_OF_CONDUCT.md) file.
-
-## License
-
-Copyright (c) 2022 SAP SE or an SAP affiliate company. All rights reserved. This project is licensed under the Apache Software License, version 2.0, except as noted otherwise in the [LICENSE](LICENSE) file.
-

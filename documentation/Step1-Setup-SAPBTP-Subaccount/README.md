@@ -11,7 +11,9 @@ You need to have the Global Account Administrator role collection assigned to yo
 If you are new to SAP BTP, follow the [Get Ready to Develop on SAP BTP](https://developers.sap.com/group.scp-1-get-ready.html) tutorial at SAP Tutorial Navigator to get started with SAP BTP, create subaccounts. enable cloud foundry environment and assign entitlements.
 
 1. Log in to SAP BTP cockpit, navigate to your global account and create a subaccount or use an existing one.
+
 2. Choose **Cloud Foundry Environment** tab and then choose **Enable Cloud Foundry**.
+
 3. Choose **Create Space** once the Cloud Foundry Environment is enabled.
 
 4. Assign the following entitlements:
@@ -45,6 +47,7 @@ To set up SAP Advanced Event Mesh for this scenario, follow these steps:
     ![plot](./images/aem-btp-create.png)
 
 3. In the **New Instance or Subscription** dialog box, leave the prepopulated **Service** and **Plan** settings and choose **Next**.
+
     ![plot](./images/aem-btp-plan.png)
         
 
@@ -55,8 +58,10 @@ To set up SAP Advanced Event Mesh for this scenario, follow these steps:
 
 
 5. Review the details and choose **Create**.
+
     ![plot](./images/aem-btp-finalscreen.png)
     
+
 ### 3. Set Up SAP HANA Cloud Instance
 
 Refer [Deploy SAP HANA Cloud](https://developers.sap.com/tutorials/hana-cloud-deploying.html) to create an instance of SAP HANA Cloud in SAP BTP. 
@@ -66,3 +71,4 @@ If you already have an existing HANA Instance, you can map it to this SAP BTP su
 ### 4. Set Up SAP Business Application Studio
 
 Refer [Manage Authorizations and Roles](https://help.sap.com/docs/SAP%20Business%20Application%20Studio/9d1db9835307451daa8c930fbd9ab264/01e69c53003c4b0a8a64310a3f08867d.html) to assign permissions to users.
+
