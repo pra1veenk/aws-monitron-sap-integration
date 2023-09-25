@@ -1,8 +1,3 @@
-To reduce the burden of change management and ensure action is taken on the Monitron inferences, this sample project has demonstrated how to automatically record the Amazon Monitron inferences in SAP Plant maintenance/asset management.
-From an SAP standpoint, we are only looking for inference data from Monitron. Without the actual hardware set up, This can be done in 2 ways (S3 bucket is a pre-requisite)
-1) Use the [payload](https://github.com/pra1veenk/aws-monitron-sap-integration/blob/main/documentation/Step5a-Setup-AWS/payload.json) file as a sample to integrate into SAP.
-2) Use the [Kinesis data generator](https://awslabs.github.io/amazon-kinesis-data-generator/web/producer.html) and use the [template file](https://github.com/pra1veenk/aws-monitron-sap-integration/blob/main/documentation/Step5a-Setup-AWS/kinesisdatatemplate.json)  to simulate a kinesis stream.The sample [output file](https://github.com/pra1veenk/aws-monitron-sap-integration/blob/main/documentation/Step5a-Setup-AWS/kinesissample.txt) contains a seriesof json documents. Follow detailed steps provided in this [document](OptionalReadme.md).
-
 ## Configuration required to deploy the CDK Project on AWS
 
 This project is set up like a standard Python project.  For an integrated development environment (IDE), use `SAP Business Application Studio` to create python virtual environment for the project with required dependencies.  
@@ -23,11 +18,11 @@ This project is set up like a standard Python project.  For an integrated develo
 
 2.  Clone the github repository and navigate to the directory.
 
-```
-git clone <git-repo-link>
+   ```
+   git clone <git-repo-link>
 
-cd aws-monitron-sap-integration
-```
+   cd aws-monitron-sap-integration
+   ```
 
 The `appConfig.json` file takes the input paramters for the stack. Maintain the following parameters in the `appConfig.json`.
 ## AWS environment details
@@ -113,8 +108,9 @@ Fill the **Secret name** as **sapaem-credentials** and Click on **Next**
 
 
 So your appConfig.json file looks as shown below: Fill all the details by following the steps mentioned above. 
-```
-{
+
+   ```
+   {
     "env": {
         "account": "<your_aws_account_id>",
         "region":"<your_aws_account_region>"
@@ -132,9 +128,11 @@ So your appConfig.json file looks as shown below: Fill all the details by follow
         "inferencefolder":"monitron"
        },
      "lambdaTimeout": 900
-}
+   }
+   
+   ```
 
-```
+
 ## Deploying the CDK Project
 
 Now that we have cloned the repository and updated the appConfig.json file, we proceed with the steps related to deployment. Open the terminal.
@@ -163,7 +161,7 @@ Once the virtualenv is activated, you can install the required dependencies.
 pip install -r requirements.txt
 ```
 
-The `appConfig.json` file takes the input paramters for the stack. We have already maintained all the parameters in the `appConfig.json` in the previous step.
+The `appConfig.json` file takes the input paramters for the stack. We have already maintained all the parameters in the `appConfig.json` in the previous step, if
 
 Add your AWS credentials configuration as below to allow SAP Business Application Studio environment to access your AWS account.
 * export AWS_ACCESS_KEY_ID="<your_access_key_here>"
@@ -179,10 +177,7 @@ Deploy the stack to your account. Make sure your CLI is setup for account ID and
 
 ```
 cdk deploy
-
 ```
-
-
 ## Cleanup
 
 In order to delete all resources created by this CDK app, follow steps outlined in this [document](CleanupReadme.md)
