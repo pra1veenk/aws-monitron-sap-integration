@@ -5,15 +5,15 @@ This project is set up like a standard Python project.  For an integrated develo
 1.To access the SAP Business Application Studio, go to your subaccount, navigate to **Services** > and choose **Instances and Subscriptions**.
    Choose the row for the SAP Business Application Studio subscription and choose **Go to Application**
 
-    ![plot](./images/access-BAS.png)
+   ![plot](./images/access-BAS.png)
 
    Click on Create Dev Space
 
-    ![plot](./images/create-dev-space.png)
+   ![plot](./images/create-dev-space.png)
 
    Create a Full Stack Cloud Application
 
-    ![plot](./images/MonitronCDK.png)
+   ![plot](./images/MonitronCDK.png)
 
 
 2.  Clone the github repository and navigate to the directory.
@@ -26,6 +26,7 @@ This project is set up like a standard Python project.  For an integrated develo
 
 The `appConfig.json` file takes the input paramters for the stack. Maintain the following parameters in the `appConfig.json`.
 ## AWS environment details
+
 * `account` Enter AWS account id of your AWS cloud environment
   Goto [AWS Console](https://us-east-1.console.aws.amazon.com/cloud9control/home?region=us-east-1#/product) and on the top right click on dropdown button as shown, Copy the Account ID as highlighted.
   
@@ -49,10 +50,12 @@ The `appConfig.json` file takes the input paramters for the stack. Maintain the 
 
    
 ## Resource Identifiers
+
 * `stackname` Enter an Identifier/Name of your choice for the CDK stack
 * `ddbtablename` Enter a name of your choice for Dynamo DB Table that would be created as part of the stack which would hold the metadata for creating Service notification in SAP
   
 ## Bucket Structure
+
 * `bucketname` Enter the name of the bucket where the inferences are sent.
    To Create a S3 Bucket, Follow steps as below:
    1. Goto [AWS Console](https://us-east-1.console.aws.amazon.com/cloud9control/home?region=us-east-1#/product)and type in "S3" in the search tab->Click on 'S3'
@@ -74,6 +77,7 @@ The `appConfig.json` file takes the input paramters for the stack. Maintain the 
 * `inferencefolder` Enter the name of the folder(prefix)where the inferences/data are sent (path to folder in your S3 bucket, for example, **s3bucket1/monitron** is the path and **monitron** is **inferencefolder**). Leave blank if no folder
 
 ## SAP Environnment details
+
 The following are the two SAP Environment variables: 
 * `SAP_AEM_CREDENTIALS` (example: arn:aws:secretsmanager://region/account/secret:sapemauth-pnyaRN)
 * `SAP_AEM_REST_URL` (example: https://mr-connection-giuyy7qx0z1.messaging.solace.cloud:9443/topic)
@@ -107,7 +111,7 @@ Fill the **Secret name** as **sapaem-credentials** and Click on **Next**
 ![plot](./images/secret-keys.png)
 
 
-So your appConfig.json file looks as shown below: Fill all the details by following the steps mentioned above. 
+So your `appConfig.json` file looks as shown below: Fill all the details by following the steps mentioned above. 
 
    ```
    {
@@ -135,7 +139,7 @@ So your appConfig.json file looks as shown below: Fill all the details by follow
 
 ## Deploying the CDK Project
 
-Now that we have cloned the repository and updated the appConfig.json file, we proceed with the steps related to deployment. Open the terminal.
+Now that we have cloned the repository and updated the `appConfig.json` file, we proceed with the steps related to deployment. Open the terminal.
 
 Firstly globally install AWS-CDK
 ```
@@ -167,7 +171,7 @@ Add your AWS credentials configuration as below to allow SAP Business Applicatio
 * export AWS_ACCESS_KEY_ID="<your_access_key_here>"
 * export AWS_SECRET_ACCESS_KEY="<your_access_secret_here>"
 
-Bootstrap your AWS account for CDK. Please check [here](https://docs.aws.amazon.com/cdk/latest/guide/tools.html) for more details on bootstraping for CDK. Bootstraping deploys a CDK toolkit stack to your account and creates a S3 bucket for storing various artifacts. You incur any charges for what the AWS CDK stores in the bucket. Because the AWS CDK does not remove any objects from the bucket, the bucket can accumulate objects as you use the AWS CDK. You can get rid of the bucket by deleting the CDKToolkit stack from your account.
+Bootstrap your AWS account for CDK. Please check [AWS CDK Tools - AWS Cloud Development](https://docs.aws.amazon.com/cdk/latest/guide/tools.html) for more details on bootstraping for CDK. Bootstraping deploys a CDK toolkit stack to your account and creates a S3 bucket for storing various artifacts. You incur any charges for what the AWS CDK stores in the bucket. Because the AWS CDK does not remove any objects from the bucket, the bucket can accumulate objects as you use the AWS CDK. You can get rid of the bucket by deleting the CDKToolkit stack from your account.
 
 ```
 cdk bootstrap aws://<YOUR ACCOUNT ID>/<YOUR AWS REGION>
@@ -180,7 +184,7 @@ cdk deploy
 ```
 ## Cleanup
 
-In order to delete all resources created by this CDK app, follow steps outlined in this [document](CleanupReadme.md)
+In order to delete all resources created by this CDK app, follow steps outlined in this [Steps-to-CleanUp](CleanupReadme.md)
 
 
 ## Useful commands
