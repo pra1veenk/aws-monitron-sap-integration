@@ -175,7 +175,7 @@ Your configuration should look like this:
     Destination: ACTION_MODELER_S4
     Content-Type: application/json
     Method: POST
-    Relative Path: /API_PURCHASEREQ_PROCESS_SRV/A_PurchaseRequisitionHeader
+    Relative Path: /API_MAINTNOTIFICATION/MaintenanceNotification
     Payload: {
         
     "NotificationText":"Monitron error ",
