@@ -1,6 +1,6 @@
 ## Test the Extension Application and Execute the End-to-End Scenario
 
-Now that you have successfully deployed the extension application in SAP BTP and completed the configurations in Amazon AWS, SAP BTP and SAP S/4HANA. 
+Now that you have successfully deployed the extension application in SAP BTP and completed the configurations in AWS, SAP BTP and SAP S/4HANA. 
 From an SAP standpoint, we are only looking for inference data from Monitron. Without the actual hardware set up, This can be done in 2 ways
 1) Use the [payload](/payload.txt) file as a sample to integrate into SAP.
 2) Use the [Kinesis data generator](https://awslabs.github.io/amazon-kinesis-data-generator/web/producer.html) and use the [template file](/kinesisdatatemplate.json)  to simulate a kinesis stream.The sample [output file](/kinesissample.txt) contains a seriesof json documents.
@@ -66,5 +66,5 @@ We have followed the first approach, that is, using the [payload](/documentation
     ![plot](./images/PMNotificationDetails.png)
 
 
-You have completed the end-to-end integration of events to business actions from **Amazon AWS Monitron** to **SAP S/4HANA** with **SAP BTP**.
+You have completed the end-to-end integration of events to business actions from **Amazon Monitron** to **SAP S/4HANA** with **SAP BTP**.
 
