@@ -42,7 +42,7 @@ In this section, you will configure SAP Business Rule project which will be used
 
     Similarly import the **MonitronActionConfigurations.zip** 
 
-        ![plot](./images/monitron-configs-zip.png)
+    ![plot](./images/monitron-configs-zip.png)
 
 6. In the **Rule Services** tab, choose the **Settings** icon and then select **ID** from the **Define Column Properties** list.
 

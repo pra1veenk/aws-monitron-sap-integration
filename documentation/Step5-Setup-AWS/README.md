@@ -52,7 +52,6 @@ The `appConfig.json` file takes the input paramters for the stack. Maintain the 
 ## Resource Identifiers
 
 * `stackname` Enter an Identifier/Name of your choice for the CDK stack
-* `ddbtablename` Enter a name of your choice for Dynamo DB Table that would be created as part of the stack which would hold the metadata for creating Service notification in SAP
   
 ## Bucket Structure
 
@@ -146,7 +145,7 @@ Firstly globally install AWS-CDK
 npm install -g aws-cdk@2.71.0
 
 ```
-Then to manually create a virtualenv 
+Then manually create a virtualenv 
 
 ```
 python3 -m venv .env
@@ -165,7 +164,7 @@ Once the virtualenv is activated, you can install the required dependencies.
 pip install -r requirements.txt
 ```
 
-The `appConfig.json` file takes the input paramters for the stack. We have already maintained all the parameters in the `appConfig.json` in the previous step, if
+The `appConfig.json` file takes the input paramters for the stack. We have already maintained all the parameters in the `appConfig.json` in the previous step.
 
 Add your AWS credentials configuration as below to allow SAP Business Application Studio environment to access your AWS account.
 * export AWS_ACCESS_KEY_ID="<your_access_key_here>"
@@ -177,7 +176,7 @@ Bootstrap your AWS account for CDK. Please check [AWS CDK Tools - AWS Cloud Deve
 cdk bootstrap aws://<YOUR ACCOUNT ID>/<YOUR AWS REGION>
 ```
 
-Deploy the stack to your account. Make sure your CLI is setup for account ID and region provided in the appConfig.json file.
+Deploy the stack to your account. Make sure your CLI is setup for account ID and region provided in the `appConfig.json` file.
 
 ```
 cdk deploy
