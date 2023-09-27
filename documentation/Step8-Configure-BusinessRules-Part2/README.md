@@ -33,13 +33,17 @@ In this section, you will update decision table and activate business rule proje
 
     ![plot](./images/ActivateRules.png)
 
-8. In the **Decision Table** section, go to **Action Id** column and select **Fixed Value** node.
+8. In the **Decision Table** section, go to **Action Id** column, type **fixed** in the field and select **Fixed Value** node. Click on the field as shown in the screenshot below.
 
     ![plot](./images/ActionIdInput.png)
 
 9. Select **Create PM Notification** entry in the value help pop up.
 
     ![plot](./images/ActionIdValueHelp.png)
+
+    Click on **save**. Again select the **DecideAction** and Choose **Edit** then Choose **Activate**
+
+    ![plot](./images/SaveDecideActionRule.png)
 
 10. Choose **Activate**.
 
