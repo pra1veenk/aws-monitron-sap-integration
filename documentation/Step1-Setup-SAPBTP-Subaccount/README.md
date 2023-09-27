@@ -34,9 +34,9 @@ Service | Service Plan | Usage Scenario |
 **Note:** Service instances for Business Rules, SAP HANA Schemas & HDI Containers, Connectivity service, Destination service and SAP Authorization and Trust Management Service will be created programmatically during deployment. 
 
 
-### 2. Set Up SAP Advanced Event Mesh
+### 2. Set Up SAP Integration Suite, Advanced Event Mesh
 
-To set up SAP Advanced Event Mesh for this scenario, follow these steps:
+To set up SAP Integration Suite, Advanced Event Mesh for this scenario, follow these steps:
 
 1. In the SAP BTP cockpit, navigate to your subaccount and choose **Services** > **Service Marketplace** and then choose **SAP Integration Suite, Advanced Event Mesh.**.
 
@@ -58,6 +58,7 @@ To set up SAP Advanced Event Mesh for this scenario, follow these steps:
 
 
 5. Review the details and choose **Create**.
+
 
     ![plot](./images/aem-btp-finalscreen.png)
     
