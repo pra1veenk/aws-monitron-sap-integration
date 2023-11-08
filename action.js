@@ -67,6 +67,7 @@ async function getDefaultAction(logHeadId) {
 
 function getValueByJSONPath(data, jsonPath) {
     let subpaths = jsonPath.split('.'), subpath, index, output = data;
+    try{
     for (let i = 0; i < subpaths.length; i++) {
         subpath = subpaths[i];
         output = output[subpath.split('[')[0]];
@@ -74,6 +75,8 @@ function getValueByJSONPath(data, jsonPath) {
             index = subpath.split('[')[1].split(']')[0];
             output = output[index];
         }
+    }} catch(err){
+        console.log(err);
     }
     return output;
 }
@@ -172,19 +175,19 @@ async function convertEventToBusinessAction(eventMessage, httpsAgent, logHeaderI
         await logUtil.createLogItem(logHeadId, 'INFO', 'Destination Service Token fetched', '');
 
         let defaultActionDetails = await getDefaultAction(logHeadId);
-        await logUtil.createLogItem(logHeadId, 'INFO', 'Number of default actions fetched', defaultActionDetails.length);
+        await logUtil.createLogItem(logHeadId, 'INFO', 'Number of default actions fetched: ' + defaultActionDetails.length);
         if (defaultActionDetails.length > 0){
             for (const defaultActionDetail of defaultActionDetails) {
 
                 let defaultActionResponse = await buildDataAndExecuteAction(eventMessage, actionResponses, defaultActionDetail, destToken, httpsAgent, logHeadId);
                 const actionId = getValueByJSONPath(defaultActionResponse.data, defaultActionDetail.defaultActionIdPath);
                 if (actionId){
-                    await logUtil.createLogItem(logHeadId, 'INFO', 'Main Action Id successfully fetched from default action: ', defaultActionDetail.ID);
+                    await logUtil.createLogItem(logHeadId, 'INFO', 'Main Action Id successfully fetched from default action: ' + defaultActionDetail.ID);
                     await logUtil.createLogItem(logHeadId, 'INFO', 'Action Determined Successfully', actionId);
                     await logUtil.updateLogHeader(logHeadId, { action_ID: actionId });
                     break
                 } else {
-                    await logUtil.createLogItem(logHeadId, 'INFO', 'Main Action Id could not be determined from default action: ', defaultActionDetail.ID);
+                    await logUtil.createLogItem(logHeadId, 'INFO', 'Main Action Id could not be determined from default action: ' + defaultActionDetail.ID);
                 }
             }
         }
