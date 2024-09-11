@@ -8,13 +8,6 @@
                     "groups": [
                         {
                             "id": "MyHome",
-                            "title": "Home",
-                            "isPreset": false,
-                            "isVisible": true,
-                            "isGroupLocked": false
-                        },
-                        {
-                            "id": "ActionAdmin",
                             "title": "Transform Events to Business Actions",
                             "isPreset": false,
                             "isVisible": true,
@@ -41,12 +34,41 @@
                                     "tileType": "sap.ushell.ui.tile.StaticTile"
                                 },
                                 {
-                                    "id": "sap.paa.action.mgmt.ui.comsapbpmrule.ruleeditor",
+                                    "id": "sap.paa.action.mgmt.ui.logs-sap-paa-action-mgmt-ui-logs-inbound",
                                     "properties": {
-                                        "targetURL": "/comsapbpmrule.ruleeditor/index.html",
-                                        "title": "Manage Business Rules",
-                                        "subtitle": "define decisions",
-                                        "icon": "sap-icon://decision"
+                                        "targetURL": "#Logs-view",
+                                        "title": "Business Action Logs",
+                                        "subtitle": "explore logs",
+                                        "icon": "sap-icon://inspect"
+                                    },
+                                    "tileType": "sap.ushell.ui.tile.StaticTile"
+                                }
+                            ]
+                        },
+                        {
+                            "id": "ActionAdmin",
+                            "title": "Transform Events to Business Actions",
+                            "isPreset": false,
+                            "isVisible": false,
+                            "isGroupLocked": false,
+                            "tiles": [    
+                                {
+                                    "id": "sap.paa.action.mgmt.ui.types-sap-paa-action-mgmt-ui-types-inbound",
+                                    "properties": {
+                                        "targetURL": "#ActionTypes-manage",
+                                        "title": "Manage Action Types",
+                                        "subtitle": "pre-defined action info",
+                                        "icon": "sap-icon://action-settings"
+                                    },
+                                    "tileType": "sap.ushell.ui.tile.StaticTile"
+                                },                            
+                                {
+                                    "id": "sap.paa.action.mgmt.ui.actions-sap-paa-action-mgmt-ui-actions-inbound",
+                                    "properties": {
+                                        "targetURL": "#Actions-manage",
+                                        "title": "Manage Actions",
+                                        "subtitle": "create business actions",
+                                        "icon": "sap-icon://action"
                                     },
                                     "tileType": "sap.ushell.ui.tile.StaticTile"
                                 },
